@@ -16,7 +16,7 @@ namespace MPEA.Infrastructure.FluentAPI
             builder.ToTable("Feedback");
 
             builder.HasKey(x => x.Id);
-            builder.Property(f => f.Id).HasDefaultValueSql("NEWID()");
+            builder.Property(f => f.Id).HasDefaultValueSql("gen_random_uuid()");
             builder.Property(f => f.Rating).IsRequired();
             builder.Property(f => f.Content).IsRequired().HasMaxLength(100);
             builder.Property(f => f.CreatedAt);

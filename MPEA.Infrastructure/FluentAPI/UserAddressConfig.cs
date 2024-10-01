@@ -16,7 +16,7 @@ namespace MPEA.Infrastructure.FluentAPI
             builder.ToTable("Address");
 
             builder.HasKey(x => x.Id);
-            builder.Property(a => a.Id).HasDefaultValueSql("NEWID()");
+            builder.Property(a => a.Id).HasDefaultValueSql("gen_random_uuid()");
             builder.Property(a => a.Street);
             builder.Property(a => a.City);
             builder.Property(a => a.Country);

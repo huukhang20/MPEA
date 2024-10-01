@@ -16,7 +16,7 @@ namespace MPEA.Infrastructure.FluentAPI
             builder.ToTable("Exchange");
 
             builder.HasKey(e => e.Id);
-            builder.Property(e => e.Id).HasDefaultValueSql("NEWID()");
+            builder.Property(e => e.Id).HasDefaultValueSql("gen_random_uuid()");
             builder.Property(e => e.Status);
             builder.Property(e => e.AgreementTerm);
             builder.Property(e => e.CreatedDate);

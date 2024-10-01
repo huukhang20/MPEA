@@ -16,7 +16,7 @@ namespace MPEA.Infrastructure.FluentAPI
             builder.ToTable("Chat");
 
             builder.HasKey(x => x.Id);
-            builder.Property(c => c.Id).HasDefaultValue("NEWID()");
+            builder.Property(c => c.Id).HasDefaultValue("gen_random_uuid()");
             builder.Property(c => c.MessageText).IsRequired().HasMaxLength(1000);
             builder.Property(c => c.Time);
             builder.Property(c => c.Status);

@@ -16,7 +16,7 @@ namespace MPEA.Infrastructure.FluentAPI
             builder.ToTable("Warranty");
 
             builder.HasKey(x => x.Id);
-            builder.Property(w => w.Id).HasDefaultValueSql("NEWID()");
+            builder.Property(w => w.Id).HasDefaultValueSql("gen_random_uuid()");
             builder.Property(w => w.StartDate);
             builder.Property(w => w.EndDate);
 

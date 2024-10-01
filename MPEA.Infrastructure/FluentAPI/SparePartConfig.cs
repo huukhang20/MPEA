@@ -16,7 +16,7 @@ namespace MPEA.Infrastructure.FluentAPI
             builder.ToTable("SparePart");
             
             builder.HasKey(x => x.Id);
-            builder.Property(p => p.Id).HasDefaultValueSql("NEWID()");
+            builder.Property(p => p.Id).HasDefaultValueSql("gen_random_uuid()");
             builder.Property(p => p.Name).IsRequired().HasMaxLength(50);
             builder.Property(p => p.TechnicalSpecifications).IsRequired().HasMaxLength(150);
             builder.Property(p => p.Status).IsRequired();

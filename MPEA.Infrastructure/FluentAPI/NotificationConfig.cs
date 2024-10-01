@@ -17,7 +17,7 @@ namespace MPEA.Infrastructure.FluentAPI
             builder.ToTable("Notification");
 
             builder.HasKey(x => x.Id);
-            builder.Property(n => n.Id).HasDefaultValueSql("NEWID()");
+            builder.Property(n => n.Id).HasDefaultValueSql("gen_random_uuid()");
             builder.Property(n => n.Title).IsRequired().HasMaxLength(50);
             builder.Property(n => n.Description).IsRequired().HasMaxLength(150);
             builder.Property(n => n.Status);

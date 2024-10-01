@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using MPEA.Domain.Models;
+using System.Reflection;
 
 namespace MPEA.Infrastructure
 {
@@ -19,7 +20,10 @@ namespace MPEA.Infrastructure
         public DbSet<Warranty> Warrantys { get; set; }
         public DbSet<Wishlist> Wishlists { get; set; }
 
-
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
