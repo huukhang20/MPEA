@@ -13,7 +13,7 @@ namespace MPEA.Domain.Models
         public string? Id { get; set; }
         public string? ExchangeTypeId { get; set; }
         public string? Status {  get; set; }
-        public string? AgreementTerm { get; set; }
+        public bool AgreementTerm { get; set; }
         public DateTime? CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set;}
         public string? ProviderId { get; set; }
@@ -25,6 +25,6 @@ namespace MPEA.Domain.Models
         public User Offerer { get; set; }
         public ExchangeType ExchangeType { get; set; }
         public ICollection<Feedback> Feedbacks { get; set; }
-    
+        public ICollection<ExchangePart> ExchangeParts { get; set; }
     }
 }
