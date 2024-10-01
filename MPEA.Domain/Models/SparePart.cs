@@ -22,7 +22,6 @@ namespace MPEA.Domain.Models
         public User User { get; set; }
         public Warranty Warranty { get; set; }
         public ICollection<Wishlist> Wishlist { get; set; }
-        public ICollection<Feedback> Feedback {  get; set; }
         public ICollection<ExchangePart> ExchangePart { get; set; }
 
     }

@@ -29,5 +29,6 @@ namespace MPEA.Domain.Models
         public ICollection<Chat> Chats { get; set; }
         public ICollection<Notification> Notification { get; set; }
         public ICollection<Report> Reports { get; set; }    
+        public ICollection<ExchangePart> ExchangeParts { get; set; }
     }
 }

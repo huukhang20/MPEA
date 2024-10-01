@@ -11,7 +11,7 @@ namespace MPEA.Domain.Models
         // Properties
         public string? Id { get; set; } 
         public string? UserId { get; set; }
-        public string? SparepartId { get; set; }
+        public string? ExchangeId { get; set; }
         public string? Rating { get; set; }
         public string? Content { get; set; }
         public DateTime? CreatedAt { get; set; }
@@ -19,6 +19,6 @@ namespace MPEA.Domain.Models
         // Realtionships
 
         public User User { get; set; }
-        public SparePart Sparepart { get; set; }
+        public Exchange Exchange { get; set; }
     }
 }

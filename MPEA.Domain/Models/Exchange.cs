@@ -18,12 +18,13 @@ namespace MPEA.Domain.Models
         public DateTime? UpdatedDate { get; set;}
         public string? FirstExchagerId { get; set; }
         public string? SecondExchangerId { get; set; }
-        public string? ExchageTypeId { get; set; }
 
         // Relationships
 
         public User FirstExchager { get; set; }
         public User SecondExchager { get; set; }
+        public ExchangeType ExchangeType { get; set; }
+        public ICollection<Feedback> Feedbacks { get; set; }
     
     }
 }
