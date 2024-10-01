@@ -16,13 +16,13 @@ namespace MPEA.Domain.Models
         public string? AgreementTerm { get; set; }
         public DateTime? CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set;}
-        public string? FirstExchagerId { get; set; }
-        public string? SecondExchangerId { get; set; }
+        public string? ProviderId { get; set; }
+        public string? OffererId { get; set; }
 
         // Relationships
 
-        public User FirstExchager { get; set; }
-        public User SecondExchager { get; set; }
+        public User Provider { get; set; }
+        public User Offerer { get; set; }
         public ExchangeType ExchangeType { get; set; }
         public ICollection<Feedback> Feedbacks { get; set; }
     
