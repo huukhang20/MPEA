@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MPEA.Application.IService
 {
-    public interface IUserSerevice
+    public interface IUserService
     {
         Task<List<UserResponse>> GetAllAccount();
     }

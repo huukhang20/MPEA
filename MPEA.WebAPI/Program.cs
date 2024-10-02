@@ -1,8 +1,10 @@
+using MPEA.Infrastructure;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
-
+builder.Services.AddInfra(builder.Configuration);
+builder.Services.AddDbContext<AppDbContext>();
 
 
 builder.Services.AddControllers();
