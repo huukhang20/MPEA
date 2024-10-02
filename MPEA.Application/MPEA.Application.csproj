@@ -15,7 +15,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="NewFolder\" />
+    <Folder Include="IService\" />
+    <Folder Include="Service\" />
   </ItemGroup>
 
 </Project>
