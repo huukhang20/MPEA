@@ -5,7 +5,7 @@ using System.Reflection;
 
 namespace MPEA.Infrastructure
 {
-    class AppDbContext : DbContext
+    public class AppDbContext : DbContext
     {
         public DbSet<Chat> Chats { get; set; }
         public DbSet<Exchange> Exchanges { get; set; }
