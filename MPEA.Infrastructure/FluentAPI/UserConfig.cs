@@ -29,6 +29,7 @@ namespace MPEA.Infrastructure.FluentAPI
             builder.Property(u => u.Birthday);
             builder.Property(u => u.CreatedDate);
             builder.Property(u => u.UpdatedDate);
+            builder.Property(u => u.AvatarURL);
 
             // Relationships
 
