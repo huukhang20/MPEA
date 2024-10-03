@@ -10,13 +10,15 @@ namespace MPEA.Domain.Models
     {
         // Properties
         public string? Id { get; set; }
-        public string? UserName { get; set; }
+        public string? Username { get; set; }
         public string? FullName { get; set; }
         public string? Password { get; set; }
         public string? Email { get; set; } = string.Empty;
         public string? PhoneNumber { get; set; }
         public string? AvatarURL { get; set; }
         public string? Role { get; set; }
+        public string? Code { get; set; }
+        public string? Status { get; set; } 
         public DateTime? Birthday { get; set; }
         public DateTime? CreatedDate {  get; set; }
         public DateTime? UpdatedDate { get; set; }

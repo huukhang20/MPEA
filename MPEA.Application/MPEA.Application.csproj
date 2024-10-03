@@ -17,8 +17,4 @@
     <ProjectReference Include="..\MPEA.Domain\MPEA.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Model\RequestModel\" />
-  </ItemGroup>
-
 </Project>

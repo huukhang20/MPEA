@@ -18,6 +18,10 @@ namespace MPEA.Infrastructure
     {
         public static IServiceCollection AddInfra(this IServiceCollection services, IConfiguration configuration)
         {
+            // Authen
+            services.AddTransient<IAuthentication, Authentication>();
+            services.AddTransient<IAuthenticationService, AuthenticationService>();
+
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             //

@@ -9,5 +9,7 @@ namespace MPEA.Application.IRepository
 {
     public interface IUserRepository : IGenericRepository<User>
     {
+        Task<User?> FindUserByUsername(string username);
+        Task<int> CreateNumberOfUserCode(string roleCode);
     }
 }

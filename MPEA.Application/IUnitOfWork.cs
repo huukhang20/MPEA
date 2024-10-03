@@ -9,6 +9,7 @@ namespace MPEA.Application
 {
     public interface IUnitOfWork
     {
-        public IUserRepository UserRepository { get; }  
+        public IUserRepository UserRepository { get; }
+        public Task<int> SaveChangesAsync();
     }
 }
