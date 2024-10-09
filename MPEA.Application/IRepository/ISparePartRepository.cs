@@ -1,6 +1,7 @@
-﻿namespace MPEA.Application.IRepository;
+﻿using MPEA.Domain.Models;
 
-public interface ISparePartRepository
+namespace MPEA.Application.IRepository;
+
+public interface ISparePartRepository : IGenericRepository<SparePart>
 {
-    
 }

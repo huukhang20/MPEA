@@ -8,13 +8,16 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 
 namespace MPEA.Infrastructure.Repositories
 {
     public class UserRepository : GenericRepository<User>, IUserRepository
     {
+        private readonly AppDbContext _context;
         public UserRepository(AppDbContext context) : base(context)
         {
+            _context = context;
         }
 
         public async Task<int> CreateNumberOfUserCode(string roleCode)
@@ -40,6 +43,57 @@ namespace MPEA.Infrastructure.Repositories
                 .Max();
 
             return maxNumber + 1;
+        }
+
+        public async Task<List<User>> GetAllUser()
+        {
+            var list = await DbSet.ToListAsync();
+            return list;
+        }
+
+        public async Task<User?> Register(User? user)
+        {
+            var result = await DbSet.AddAsync(user);
+            return result.Entity;
+        }
+
+        public async Task<User?> UpdateUser(User? user)
+        {
+            if (user == null)
+            {
+                return null; 
+            }
+            DbSet.Update(user);
+            await _context.SaveChangesAsync();
+            return user; 
+        }
+
+        public string? GetAdminAccount(string email, string password)
+        {
+            IConfiguration config = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", true, true)
+                .Build();
+            // Check if the configuration key exists
+            if (config.GetSection("AdminAccount").Exists())
+            {
+                string emailJson = config["AdminAccount:adminemail"];
+                string passwordJson = config["AdminAccount:adminpassword"];
+
+                // Check if both email and password match
+                if (emailJson == email && passwordJson == password)
+                {
+                    return emailJson;
+                }
+            }
+
+            return null;
+        }
+
+        public async Task<User?> GetUserById(int id)
+        {
+            return await DbSet.FirstOrDefaultAsync(a => a.Id == id.ToString());
+
         }
 
         public async Task<User?> FindUserByUsername(string username)

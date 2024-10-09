@@ -293,8 +293,14 @@ namespace MPEA.Infrastructure.Migrations
                         .HasColumnType("text")
                         .HasDefaultValueSql("gen_random_uuid()");
 
+                    b.Property<string>("AvatarURL")
+                        .HasColumnType("text");
+
                     b.Property<DateTime?>("Birthday")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("timestamp with time zone");
@@ -323,10 +329,13 @@ namespace MPEA.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("Status")
+                        .HasColumnType("text");
+
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("UserName")
+                    b.Property<string>("Username")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)");
