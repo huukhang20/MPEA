@@ -29,12 +29,15 @@ namespace MPEA.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "text", nullable: false, defaultValueSql: "gen_random_uuid()"),
-                    UserName = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    Username = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
                     FullName = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
                     Password = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
                     Email = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
                     PhoneNumber = table.Column<string>(type: "character varying(11)", maxLength: 11, nullable: false),
+                    AvatarURL = table.Column<string>(type: "text", nullable: true),
                     Role = table.Column<string>(type: "text", nullable: false),
+                    Code = table.Column<string>(type: "text", nullable: true),
+                    Status = table.Column<string>(type: "text", nullable: true),
                     Birthday = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     UpdatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
@@ -145,6 +148,28 @@ namespace MPEA.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Feedback",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "text", nullable: false, defaultValueSql: "gen_random_uuid()"),
+                    UserId = table.Column<string>(type: "text", nullable: true),
+                    ExchangeId = table.Column<string>(type: "text", nullable: true),
+                    Rating = table.Column<string>(type: "text", nullable: false),
+                    Content = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Feedback", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Feedback_user_UserId",
+                        column: x => x.UserId,
+                        principalTable: "user",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Notification",
                 columns: table => new
                 {
@@ -206,33 +231,6 @@ namespace MPEA.Infrastructure.Migrations
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_SparePart_user_UserId",
-                        column: x => x.UserId,
-                        principalTable: "user",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Feedback",
-                columns: table => new
-                {
-                    Id = table.Column<string>(type: "text", nullable: false, defaultValueSql: "gen_random_uuid()"),
-                    UserId = table.Column<string>(type: "text", nullable: true),
-                    ExchangeId = table.Column<string>(type: "text", nullable: true),
-                    Rating = table.Column<string>(type: "text", nullable: false),
-                    Content = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Feedback", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Feedback_Exchange_ExchangeId",
-                        column: x => x.ExchangeId,
-                        principalTable: "Exchange",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Feedback_user_UserId",
                         column: x => x.UserId,
                         principalTable: "user",
                         principalColumn: "Id",
@@ -342,11 +340,6 @@ namespace MPEA.Infrastructure.Migrations
                 name: "IX_ExchangePart_SparePartId",
                 table: "ExchangePart",
                 column: "SparePartId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Feedback_ExchangeId",
-                table: "Feedback",
-                column: "ExchangeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Feedback_UserId",
