@@ -24,7 +24,6 @@ namespace MPEA.Domain.Models
         public User Provider { get; set; }
         public User Offerer { get; set; }
         public ExchangeType ExchangeType { get; set; }
-        public ICollection<Feedback> Feedbacks { get; set; }
         public ICollection<ExchangePart> ExchangeParts { get; set; }
     }
 }

@@ -24,7 +24,6 @@ namespace MPEA.Infrastructure.FluentAPI
 
             // Relationships
 
-            builder.HasMany(e => e.Feedbacks).WithOne(f => f.Exchange).HasForeignKey(f => f.ExchangeId);
             builder.HasMany(e => e.ExchangeParts).WithOne(ep => ep.Exchange).HasForeignKey(ep => ep.ExchangeId);
 
         }
