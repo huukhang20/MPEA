@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using MPEA.Application.Model.ViewModel.Chat;
+using MPEA.Application.Model.ViewModel.Notification;
 using MPEA.Application.Model.ViewModel.User;
 using MPEA.Domain.Models;
 using System;
@@ -14,6 +16,8 @@ namespace MPEA.Application.Mapper
         partial void AddUserMapperConfig()
         {
             CreateMap<User, UserResponse>().ReverseMap();
+            CreateMap<Chat, ChatResponse>().ReverseMap();
+            CreateMap<Notification, NotificationResponse>().ReverseMap();
         }
     }
 }
