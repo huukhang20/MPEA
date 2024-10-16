@@ -16,9 +16,11 @@ namespace MPEA.Domain.Models
         public string? Status { get; set; }
         public DateTime? CreatedAt { get; set; }
         public string? UserId { get; set; }
+        public bool IsRead { get; set; }
 
         // Relationships
 
         public User User { get; set; }
+        public bool IsReaded { get; set; }
     }
 }

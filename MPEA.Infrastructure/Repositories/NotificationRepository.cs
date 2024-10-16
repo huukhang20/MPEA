@@ -15,6 +15,11 @@ public class NotificationRepository : GenericRepository<Notification>, INotifica
         return (await DbSet.Where(n => n.UserId != null && n.UserId == id.ToString()).Take(5).ToListAsync());
     }
 
+    public async Task<Notification> GetByIdAsync(int id)
+    {
+        return await DbSet.FirstOrDefaultAsync(n => n.Id.ToString() == id.ToString());
+    }
+
     public async Task<List<Notification>> GetAllByAccount(int id)
     {
         return await DbSet.Where(n => n.UserId == id.ToString()).ToListAsync();

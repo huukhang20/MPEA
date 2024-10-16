@@ -17,7 +17,7 @@ namespace MPEA.Application.Mapper
         {
             CreateMap<User, UserResponse>().ReverseMap();
             CreateMap<Chat, ChatResponse>().ReverseMap();
-            CreateMap<Notification, NotificationResponse>().ReverseMap();
+            
         }
     }
 }
