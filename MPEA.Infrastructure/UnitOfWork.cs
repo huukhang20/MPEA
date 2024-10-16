@@ -21,6 +21,7 @@ namespace MPEA.Infrastructure
         public IUserRepository UserRepository { get; }
         public ISparePartRepository SparePartRepository { get; }
         public INotificationRepository NotificationRepository { get; }
+        public IReportRepository ReportRepository { get; }
 
         public async Task<int> SaveChangesAsync()
         {

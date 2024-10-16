@@ -16,10 +16,10 @@ public class ReportRepository : GenericRepository<Report> , IReportRepository
     {
         return await DbSet.Where(x => x.Status == ReportStatus.Pending.ToString()).ToListAsync();
     }
-    // public override async Task<Report?> GetByIdAsync(int id)
-    // {
-    //     return await DbSet.FirstOrDefaultAsync(x => x.Id == id && x.Status != (int)ReportStatus.Inactive);
-    // }
+    public  async Task<Report?> GetByIdAsync(string id)
+    {
+        return await DbSet.FirstOrDefaultAsync(x => x.Id == id.ToString() && x.Status != ReportStatus.Inactive.ToString());
+    }
 
     public override async Task<List<Report>> GetAllAsync()
     {
