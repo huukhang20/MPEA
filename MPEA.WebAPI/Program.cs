@@ -21,6 +21,12 @@ var app = builder.Build();
 //    app.UseSwaggerUI();
 //}
 
+app.UseDefaultFiles();
+
+app.UseStaticFiles();
+
+app.UseRouting();
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
