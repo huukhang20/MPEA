@@ -13,9 +13,11 @@ namespace MPEA.Application.Mapper
         {
             AddUserMapperConfig();
             AddNotificationMapperConfig();
+            AddReportMapperConfig();
         }
 
         partial void AddUserMapperConfig();
         partial void AddNotificationMapperConfig();
+        partial void AddReportMapperConfig();
     }
 }

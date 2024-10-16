@@ -1,6 +1,8 @@
-﻿namespace MPEA.Application.IRepository;
+﻿using MPEA.Domain.Models;
 
-public interface IReportRepository
+namespace MPEA.Application.IRepository;
+
+public interface IReportRepository :  IGenericRepository<Report>
 {
-    
+   Task<List<Report>> GetAllReportPendingAsync();
 }
