@@ -19,6 +19,8 @@ namespace MPEA.Infrastructure
         }
 
         public IUserRepository UserRepository { get; }
+        public ISparePartRepository SparePartRepository { get; }
+
         public async Task<int> SaveChangesAsync()
         {
             return await _context.SaveChangesAsync();
