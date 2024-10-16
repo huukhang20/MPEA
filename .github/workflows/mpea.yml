@@ -1,4 +1,4 @@
-name: Build and deploy .NET Core application to Web App mpea with API Management Service MPEAWebAPIapi-MPEAWebAPI
+name: Build and deploy .NET Core application to Web App mpea with API Management Service MPEAWebAPI-mpea-api
 on:
   push:
     branches:
@@ -7,11 +7,11 @@ env:
   AZURE_WEBAPP_NAME: mpea
   AZURE_WEBAPP_PACKAGE_PATH: MPEA.WebAPI\publish
   AZURE_APIM_RESOURCE_PATH: /
-  AZURE_APIM_RESOURCEGROUP: MPEAResourceGroup
-  AZURE_APIM_SERVICENAME: MPEAWebAPIapi
-  AZURE_APIM_API_ID: MPEAWebAPI
+  AZURE_APIM_RESOURCEGROUP: mpeaResourceGroup
+  AZURE_APIM_SERVICENAME: MPEAWebAPI
+  AZURE_APIM_API_ID: mpea-api
   AZURE_APIM_APPSERVICEURL: https://mpea.azurewebsites.net
-  SWASHBUCLE_ASPNET_CORE_CLI_PACKAGE_VERSION: 6.4.0
+  SWASHBUCLE_ASPNET_CORE_CLI_PACKAGE_VERSION: 5.6.3
   SWASHBUCKLE_DOTNET_CORE_VERSION: 3.1.x
   API_IMPORT_SPECIFICATION_PATH: MPEA.WebAPI\publish\swagger.json
   API_IMPORT_DLL: MPEA.WebAPI\bin\Release\net8.0\MPEA.WebAPI.dll
@@ -64,11 +64,11 @@ jobs:
       with:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
         package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
-        publish-profile: ${{ secrets.mpea_C070 }}
+        publish-profile: ${{ secrets.mpea_D12B }}
     - name: Azure Login
       uses: azure/login@v1
       with:
-        creds: ${{ secrets.MPEAWebAPIapi_SPN }}
+        creds: ${{ secrets.MPEAWebAPI_SPN }}
     - name: Import API into Azure API Management
       run: az apim api import --path "${{ env.AZURE_APIM_RESOURCE_PATH }}" --resource-group "${{ env.AZURE_APIM_RESOURCEGROUP }}" --service-name "${{ env.AZURE_APIM_SERVICENAME }}" --api-id "${{ env.AZURE_APIM_API_ID }}" --service-url "${{ env.AZURE_APIM_APPSERVICEURL }}" --specification-path "${{ env.API_IMPORT_SPECIFICATION_PATH }}" --specification-format OpenApi --subscription-required false
     - name: logout
