@@ -76,13 +76,13 @@ public class WishlistService : IWishlistService
         return (response, response.Count);
     }
 
-    public async Task<Wishlist> UpdateWishList(UpdateWishlistRequest updateWishlistRequest)
-    {
-        throw new NotImplementedException();
-    }
-
-    public async Task<Wishlist> DeleteWishList(string id)
-    {
-        throw new NotImplementedException();
-    }
+    // public async Task<Wishlist> UpdateWishList(UpdateWishlistRequest updateWishlistRequest)
+    // {
+    //     throw new NotImplementedException();
+    // }
+    //
+    // public async Task<Wishlist> DeleteWishList(string id)
+    // {
+    //     throw new NotImplementedException();
+    // }
 }
