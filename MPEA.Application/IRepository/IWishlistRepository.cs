@@ -1,6 +1,10 @@
-﻿namespace MPEA.Application.IRepository;
+﻿using MPEA.Domain.Models;
 
-public interface IWishlistRepository
+namespace MPEA.Application.IRepository;
+
+public interface IWishlistRepository : IGenericRepository<Wishlist>
 {
-    
+    public Task<List<Wishlist>> GetAllByAccount();
+    public Task<List<Wishlist>> GetByIdAsync(string id);
+    public Task<List<Wishlist>> GetWishListByAccountId(string id);
 }

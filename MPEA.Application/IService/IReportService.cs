@@ -6,10 +6,10 @@ namespace MPEA.Application.IService;
 
 public interface IReportService
 {
-    // Task<bool> AddReport(ReportRequest addReportRequest);
+    Task<bool> AddReport(ReportRequest addReportRequest);
     Task<(List<ReportResponse>, int)> GetAllReportPending(ListModels listReport);
     Task<bool> DeleteReport(string id);
-    // Task<bool> UpdateReport(UpdateReportRequest updateReport);
+     Task<bool> UpdateReport(UpdateReportRequest updateReport);
     Task<ReportResponse> GetReportById(string reportId);
     Task<(List<ReportResponse>, int)> GetAllReport(ListModels list);
 }
