@@ -12,7 +12,7 @@ namespace MPEA.Application.IService
     public interface IMailService
     {
         Task SendEmail(MailModel request);
-        Task SendAccountInformation(User account, string password);
+        Task SendUserInformation(User account, string password);
         Task SendConfirmRegistration(User account);
     }
 }

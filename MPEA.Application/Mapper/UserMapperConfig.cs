@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using MPEA.Application.Model.RequestModel.Authentication;
 using MPEA.Application.Model.ViewModel.User;
 using MPEA.Domain.Models;
 using System;
@@ -13,7 +14,9 @@ namespace MPEA.Application.Mapper
     {
         partial void AddUserMapperConfig()
         {
+            CreateMap<CreateUserRequest, User>();
             CreateMap<User, UserResponse>().ReverseMap();
+            
         }
     }
 }

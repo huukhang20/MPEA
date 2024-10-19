@@ -12,6 +12,7 @@ namespace MPEA.Application.Mapper
         public MapperConfig()
         {
             AddUserMapperConfig();
+
         }
 
         partial void AddUserMapperConfig();

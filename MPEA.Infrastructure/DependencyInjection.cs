@@ -31,7 +31,7 @@ namespace MPEA.Infrastructure
             services.AddScoped<IUserService, UserService>();
 
 
-
+            services.AddSingleton<IMailService, MailService>();
             services.AddAutoMapper(typeof(MapperConfig).Assembly);
             return services;
         }
