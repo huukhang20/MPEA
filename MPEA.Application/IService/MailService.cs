@@ -32,8 +32,7 @@ namespace MPEA.Application.IService
         {
             var template = GetEmailTemplate("NotificationAccount.html");
 
-            template = template.Replace("[FullName]", user.FullName);
-            template = template.Replace("[Tên tài khoản]", user.Username);
+            template = template.Replace("[Full Name]", user.FullName);
 
             var body = template;
 
