@@ -3,6 +3,7 @@ using System;
 using MPEA.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MPEA.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241021151005_UpdateCategoryTable")]
+    partial class UpdateCategoryTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -280,9 +283,6 @@ namespace MPEA.Infrastructure.Migrations
                         .HasColumnType("text")
                         .HasDefaultValueSql("gen_random_uuid()");
 
-                    b.Property<string>("CategoryId")
-                        .HasColumnType("text");
-
                     b.Property<string>("Description")
                         .HasMaxLength(150)
                         .HasColumnType("character varying(150)");
@@ -304,8 +304,6 @@ namespace MPEA.Infrastructure.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
 
                     b.HasIndex("UserId");
 
@@ -555,10 +553,6 @@ namespace MPEA.Infrastructure.Migrations
 
             modelBuilder.Entity("MPEA.Domain.Models.SparePart", b =>
                 {
-                    b.HasOne("MPEA.Domain.Models.Category", "Category")
-                        .WithMany("SpareParts")
-                        .HasForeignKey("CategoryId");
-
                     b.HasOne("MPEA.Domain.Models.User", "User")
                         .WithMany("SpareParts")
                         .HasForeignKey("UserId")
@@ -567,8 +561,6 @@ namespace MPEA.Infrastructure.Migrations
                     b.HasOne("MPEA.Domain.Models.Warranty", "Warranty")
                         .WithOne("SparePart")
                         .HasForeignKey("MPEA.Domain.Models.SparePart", "WarrantyId");
-
-                    b.Navigation("Category");
 
                     b.Navigation("User");
 
@@ -604,8 +596,6 @@ namespace MPEA.Infrastructure.Migrations
             modelBuilder.Entity("MPEA.Domain.Models.Category", b =>
                 {
                     b.Navigation("ChildCategories");
-
-                    b.Navigation("SpareParts");
                 });
 
             modelBuilder.Entity("MPEA.Domain.Models.Exchange", b =>

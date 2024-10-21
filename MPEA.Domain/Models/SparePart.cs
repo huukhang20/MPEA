@@ -12,15 +12,18 @@ namespace MPEA.Domain.Models
 
         public string? Id {  get; set; }
         public string? Name { get; set; }
-        public string? TechnicalSpecifications { get; set; }
+        public string? CategoryId { get; set; }
+        public string? Description { get; set; }
         public string? WarrantyId {  get; set; }
         public string? UserId { get; set; }
         public string? Status { get; set; }
+        public string? Image { get; set; }
 
         // Relationships 
 
         public User User { get; set; }
         public Warranty Warranty { get; set; }
+        public Category Category { get; set; }
         public ICollection<Wishlist> Wishlist { get; set; }
         public ICollection<ExchangePart> ExchangePart { get; set; }
 
