@@ -22,12 +22,14 @@ namespace MPEA.Infrastructure
             services.AddTransient<IAuthentication, Authentication>();
             services.AddTransient<IAuthenticationService, AuthenticationService>();
 
+            // Category
+            services.AddTransient<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<ICategoryService, CategoryService>();
+
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             //
             services.AddTransient<IUserRepository, UserRepository>();
-
-            //
             services.AddScoped<IUserService, UserService>();
 
 
