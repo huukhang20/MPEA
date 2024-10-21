@@ -14,7 +14,8 @@ namespace MPEA.Domain.Models
         public string? Name { get; set; }
         public string? CategoryId { get; set; }
         public string? Description { get; set; }
-        public string? WarrantyId {  get; set; }
+        public bool? IsWarranty { get; set; }
+        public string? WarrntyImage { get; set; }
         public string? UserId { get; set; }
         public string? Status { get; set; }
         public string? Image { get; set; }
@@ -22,7 +23,6 @@ namespace MPEA.Domain.Models
         // Relationships 
 
         public User User { get; set; }
-        public Warranty Warranty { get; set; }
         public Category Category { get; set; }
         public ICollection<Wishlist> Wishlist { get; set; }
         public ICollection<ExchangePart> ExchangePart { get; set; }

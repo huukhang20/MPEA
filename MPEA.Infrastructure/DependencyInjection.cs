@@ -26,6 +26,10 @@ namespace MPEA.Infrastructure
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddScoped<ICategoryService, CategoryService>();
 
+            // SparePart
+            services.AddTransient<ISparePartRepository, SparePartRepository>();
+            services.AddScoped<ISparePartService, SparePartService>();
+
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             //

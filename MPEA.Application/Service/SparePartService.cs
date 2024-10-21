@@ -1,6 +1,8 @@
-﻿namespace MPEA.Application.Service;
+﻿using MPEA.Application.IService;
 
-public class SparePartService
+namespace MPEA.Application.Service;
+
+public class SparePartService : ISparePartService
 {
     
 }

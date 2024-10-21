@@ -51,36 +51,6 @@ namespace MPEA.WebAPI.Controllers
             }
         }
 
-        // GET: api/Users/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult> GetUser(string id)
-        {
-            throw new NotImplementedException();
-        }
-
-        // PUT: api/Users/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser(string id, User user)
-        {
-            throw new NotImplementedException();
-        }
-
-        // POST: api/Users
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult> PostUser(User user)
-        {
-            throw new NotImplementedException();
-        }
-
-        // DELETE: api/Users/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUser(string id)
-        {
-            throw new NotImplementedException();
-        }
-
         private bool UserExists(string id)
         {
             throw new NotImplementedException();
