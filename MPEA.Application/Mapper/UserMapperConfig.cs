@@ -16,7 +16,7 @@ namespace MPEA.Application.Mapper
         {
             CreateMap<CreateUserRequest, User>();
             CreateMap<User, UserResponse>().ReverseMap();
-            
+            CreateMap<UpdateUserRequest, User>();
         }
     }
 }

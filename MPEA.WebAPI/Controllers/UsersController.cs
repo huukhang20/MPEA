@@ -53,7 +53,7 @@ namespace MPEA.WebAPI.Controllers
 
         // GET: api/Users/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(string id)
+        public async Task<ActionResult> GetUser(string id)
         {
             throw new NotImplementedException();
         }
@@ -69,7 +69,7 @@ namespace MPEA.WebAPI.Controllers
         // POST: api/Users
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User user)
+        public async Task<ActionResult> PostUser(User user)
         {
             throw new NotImplementedException();
         }
