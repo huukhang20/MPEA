@@ -30,15 +30,29 @@ public class WishlistService : IWishlistService
         {
             throw new ArgumentException("SparePartId is required.");
         }
-        
+
         if (wishlistRequest.CreatedAt.HasValue && wishlistRequest.CreatedAt.Value > DateTime.UtcNow)
         {
             throw new ArgumentException("CreatedAt cannot be in the future.");
         }
-        var wishList = _mapper.Map<Wishlist>(wishlistRequest);
-        await _unitOfWork.WishlistRepository.AddAsync(wishList);
+
+        
+        var wishlist = _mapper.Map<Wishlist>(wishlistRequest);
+    
+        
+        if (string.IsNullOrWhiteSpace(wishlistRequest.ImageUrl))
+        {
+            wishlist.ImageUrl = "default-image-url"; 
+        }
+        else
+        {
+            wishlist.ImageUrl = wishlistRequest.ImageUrl; 
+        }
+
+        await _unitOfWork.WishlistRepository.AddAsync(wishlist);
         await _unitOfWork.SaveChangesAsync();
-        return wishList;
+
+        return wishlist;
     }
 
     public async Task<List<WishListResponse>> GetAllWishList()
