@@ -131,7 +131,7 @@ namespace MPEA.Application.Service
         {
             var prefix = role switch
             {
-                Role.Exchager => "EX",
+                Role.Exchanger => "EX",
                 Role.Staff => "ST",
                 Role.Admin => "AD",
                 _ => throw new ArgumentException("Vai trờ không hợp lệ")
