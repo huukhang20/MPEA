@@ -201,7 +201,7 @@ namespace MPEA.Application.Service
             response.Message = "Succefully";
             response.Success = true;
 
-            await _mailService.SendConfirmRegistration(account);
+            //await _mailService.SendConfirmRegistration(account);
 
             return response;
         }
