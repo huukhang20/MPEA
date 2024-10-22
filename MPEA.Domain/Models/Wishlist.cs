@@ -20,8 +20,8 @@ namespace MPEA.Domain.Models
 
         // Relationships
 
-        public User User { get; set; }
-        public SparePart SparePart { get; set; }
+        public virtual User User { get; set; }
+        public virtual SparePart SparePart { get; set; }
         public string ImageUrl { get; set; }
     }
 }

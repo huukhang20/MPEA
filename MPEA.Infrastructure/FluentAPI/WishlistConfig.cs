@@ -20,6 +20,7 @@ namespace MPEA.Infrastructure.FluentAPI
             builder.Property(x => x.CreatedAt);
             builder.Property(x => x.UpdatedAt);
             builder.Property(x => x.DeletedAt);
+            builder.Property(x => x.ImageUrl);
         }
     }
 }

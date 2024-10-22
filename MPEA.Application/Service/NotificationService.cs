@@ -61,7 +61,7 @@ public class NotificationService : INotificationService
     {
         var notification = await _unitOfWork.NotificationRepository.GetByIdAsync(id);
         if (notification == null) throw new Exception("Khong tim thay Notification");
-        notification.IsReaded = true;
+        notification.IsRead = true;
 
         return await _unitOfWork.SaveChangesAsync() > 0;
     }

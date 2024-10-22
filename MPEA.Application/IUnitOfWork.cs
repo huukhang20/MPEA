@@ -12,6 +12,9 @@ namespace MPEA.Application
         public IUserRepository UserRepository { get; }
         public ICategoryRepository CategoryRepository { get; }
         public ISparePartRepository SparePartRepository { get; }
+        public IWishlistRepository WishlistRepository { get; }
+        public IReportRepository ReportRepository { get; }
+        public INotificationRepository NotificationRepository { get; }
         public Task<int> SaveChangesAsync();
     }
 }

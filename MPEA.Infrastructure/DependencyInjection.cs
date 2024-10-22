@@ -29,7 +29,7 @@ namespace MPEA.Infrastructure
             // SparePart
             services.AddTransient<ISparePartRepository, SparePartRepository>();
             services.AddScoped<ISparePartService, SparePartService>();
-
+            // Wishlist
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IWishlistService, WishlistService>();
             services.AddScoped<IWishlistRepository, WishlistRepository>();
