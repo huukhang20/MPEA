@@ -4,7 +4,6 @@ namespace MPEA.Application.IRepository;
 
 public interface ISparePartRepository : IGenericRepository<SparePart>
 {
-    Task<List<SparePart>> GetAllSparePartAsync();
-    Task<SparePart> GetSparePartById(int id);
-    
+    Task<List<SparePart>> GetByName(string query);
+    Task<List<SparePart>> GetByCateName(string query);
 }

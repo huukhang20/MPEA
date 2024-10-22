@@ -35,7 +35,7 @@ namespace MPEA.Infrastructure
                 var connectionString = configuration.GetConnectionString("MPEA");
                 optionsBuilder.UseNpgsql(connectionString);
             }
-
+            optionsBuilder.UseLazyLoadingProxies();
             optionsBuilder.EnableSensitiveDataLogging();
         }
     }

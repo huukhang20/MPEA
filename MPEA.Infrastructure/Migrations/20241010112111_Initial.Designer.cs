@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MPEA.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241001141236_Initial")]
+    [Migration("20241010112111_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -183,8 +183,6 @@ namespace MPEA.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ExchangeId");
-
                     b.HasIndex("UserId");
 
                     b.ToTable("Feedback", (string)null);
@@ -296,8 +294,14 @@ namespace MPEA.Infrastructure.Migrations
                         .HasColumnType("text")
                         .HasDefaultValueSql("gen_random_uuid()");
 
+                    b.Property<string>("AvatarURL")
+                        .HasColumnType("text");
+
                     b.Property<DateTime?>("Birthday")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("timestamp with time zone");
@@ -326,10 +330,13 @@ namespace MPEA.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("Status")
+                        .HasColumnType("text");
+
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("UserName")
+                    b.Property<string>("Username")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)");
@@ -489,16 +496,10 @@ namespace MPEA.Infrastructure.Migrations
 
             modelBuilder.Entity("MPEA.Domain.Models.Feedback", b =>
                 {
-                    b.HasOne("MPEA.Domain.Models.Exchange", "Exchange")
-                        .WithMany("Feedbacks")
-                        .HasForeignKey("ExchangeId");
-
                     b.HasOne("MPEA.Domain.Models.User", "User")
                         .WithMany("Feedbacks")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.Navigation("Exchange");
 
                     b.Navigation("User");
                 });
@@ -566,8 +567,6 @@ namespace MPEA.Infrastructure.Migrations
             modelBuilder.Entity("MPEA.Domain.Models.Exchange", b =>
                 {
                     b.Navigation("ExchangeParts");
-
-                    b.Navigation("Feedbacks");
                 });
 
             modelBuilder.Entity("MPEA.Domain.Models.ExchangeType", b =>

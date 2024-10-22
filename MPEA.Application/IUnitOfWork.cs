@@ -10,10 +10,8 @@ namespace MPEA.Application
     public interface IUnitOfWork
     {
         public IUserRepository UserRepository { get; }
+        public ICategoryRepository CategoryRepository { get; }
         public ISparePartRepository SparePartRepository { get; }
-        public INotificationRepository NotificationRepository { get; }
-        public IReportRepository ReportRepository { get; }
-        public IWishlistRepository WishlistRepository { get; }
         public Task<int> SaveChangesAsync();
     }
 }

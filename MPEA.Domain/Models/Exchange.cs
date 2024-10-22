@@ -21,10 +21,9 @@ namespace MPEA.Domain.Models
 
         // Relationships
 
-        public User Provider { get; set; }
-        public User Offerer { get; set; }
-        public ExchangeType ExchangeType { get; set; }
-        public ICollection<Feedback> Feedbacks { get; set; }
-        public ICollection<ExchangePart> ExchangeParts { get; set; }
+        public virtual User Provider { get; set; }
+        public virtual User Offerer { get; set; }
+        public virtual ExchangeType ExchangeType { get; set; }
+        public virtual ICollection<ExchangePart> ExchangeParts { get; set; }
     }
 }

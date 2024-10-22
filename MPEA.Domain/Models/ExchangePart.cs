@@ -20,8 +20,8 @@ namespace MPEA.Domain.Models
 
         // Relationships
 
-        public SparePart SparePart { get; set; }
-        public Exchange Exchange { get; set; }  
-        public User Exchager { get; set; }
+        public virtual SparePart SparePart { get; set; }
+        public virtual Exchange Exchange { get; set; }  
+        public virtual User Exchager { get; set; }
     }
 }

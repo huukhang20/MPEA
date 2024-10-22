@@ -22,18 +22,24 @@ namespace MPEA.Infrastructure
             services.AddTransient<IAuthentication, Authentication>();
             services.AddTransient<IAuthenticationService, AuthenticationService>();
 
+            // Category
+            services.AddTransient<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<ICategoryService, CategoryService>();
+
+            // SparePart
+            services.AddTransient<ISparePartRepository, SparePartRepository>();
+            services.AddScoped<ISparePartService, SparePartService>();
+
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IWishlistService, WishlistService>();
             services.AddScoped<IWishlistRepository, WishlistRepository>();
 
             //
             services.AddTransient<IUserRepository, UserRepository>();
-
-            //
             services.AddScoped<IUserService, UserService>();
 
 
-
+            services.AddSingleton<IMailService, MailService>();
             services.AddAutoMapper(typeof(MapperConfig).Assembly);
             return services;
         }

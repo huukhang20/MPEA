@@ -6,20 +6,17 @@ namespace MPEA.Infrastructure.Repositories;
 
 public class SparePartRepository : GenericRepository<SparePart>, ISparePartRepository
 {
-    private readonly AppDbContext _context;
     public SparePartRepository(AppDbContext context) : base(context)
     {
-        _context = context;
     }
 
-    public async Task<List<SparePart>> GetAllSparePartAsync()
+    public async Task<List<SparePart>> GetByName(string query)
     {
-        var partlist = await DbSet.ToListAsync();
-        return partlist;
+        return await DbSet.Where(e => e.Name.ToLower().Contains(query.ToLower())).ToListAsync();
     }
 
-    public async Task<SparePart> GetSparePartById(int id)
+    public async Task<List<SparePart>> GetByCateName(string query)
     {
-        return await DbSet.FirstOrDefaultAsync(p => p.Id == id.ToString());
+        return await DbSet.Where(e => e.Category.Name.ToLower().Contains(query.ToLower())).ToListAsync();
     }
 }

@@ -16,6 +16,6 @@ namespace MPEA.Domain.Models
 
         // Relationships
 
-        public ICollection<Exchange> Exchange { get; set; }
+        public virtual ICollection<Exchange> Exchange { get; set; }
     }
 }

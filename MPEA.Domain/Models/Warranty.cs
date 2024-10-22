@@ -16,6 +16,6 @@ namespace MPEA.Domain.Models
 
         // Realtionships
 
-        public SparePart SparePart { get; set; }
+        public virtual SparePart SparePart { get; set; }
     }
 }

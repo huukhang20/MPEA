@@ -12,14 +12,12 @@ namespace MPEA.Application.Mapper
         public MapperConfig()
         {
             AddUserMapperConfig();
-            AddNotificationMapperConfig();
-            AddReportMapperConfig();
-            AddWishListMapperConfig();
+            AddCateMapperConfig();
+            AddSparePartMapperConfig();
         }
 
         partial void AddUserMapperConfig();
-        partial void AddNotificationMapperConfig();
-        partial void AddReportMapperConfig();
-        partial void AddWishListMapperConfig();
+        partial void AddCateMapperConfig();
+        partial void AddSparePartMapperConfig();
     }
 }

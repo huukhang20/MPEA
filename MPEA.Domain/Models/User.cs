@@ -25,16 +25,16 @@ namespace MPEA.Domain.Models
 
         // Relationships
 
-        public ICollection<UserAddress> Addresses { get; set; }
-        public ICollection<SparePart> SpareParts { get; set; }
-        public ICollection<Wishlist> Wishlists { get; set; }
-        public ICollection<Feedback> Feedbacks { get; set; }    
-        public ICollection<Exchange> ExchangeProviders { get; set; }
-        public ICollection<Exchange> ExchangeOffers { get; set; }
-        public ICollection<Chat> ChatReceiveds { get; set; }
-        public ICollection<Chat> ChatSents {  get; set; }
-        public ICollection<Notification> Notifications { get; set; }
-        public ICollection<Report> Reports { get; set; }    
-        public ICollection<ExchangePart> ExchangeParts { get; set; }
+        public virtual ICollection<UserAddress> Addresses { get; set; }
+        public virtual ICollection<SparePart> SpareParts { get; set; }
+        public virtual ICollection<Wishlist> Wishlists { get; set; }
+        public virtual ICollection<Feedback> Feedbacks { get; set; }    
+        public virtual ICollection<Exchange> ExchangeProviders { get; set; }
+        public virtual ICollection<Exchange> ExchangeOffers { get; set; }
+        public virtual ICollection<Chat> ChatReceiveds { get; set; }
+        public virtual ICollection<Chat> ChatSents {  get; set; }
+        public virtual ICollection<Notification> Notifications { get; set; }
+        public virtual ICollection<Report> Reports { get; set; }    
+        public virtual ICollection<ExchangePart> ExchangeParts { get; set; }
     }
 }

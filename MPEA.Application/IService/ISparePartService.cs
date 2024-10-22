@@ -1,10 +1,12 @@
-﻿using MPEA.Application.Model.RequestModel.SparepartRequest;
-using MPEA.Domain.Models;
+﻿using MPEA.Application.Model.RequestModel.SparePart;
+using MPEA.Application.Model.ViewModel.SparePart;
 
 namespace MPEA.Application.IService;
 
 public interface ISparePartService
 {
-    Task<SparePart> UpdateSparePart(UpdateSparePartRequest request);
-    
+    Task<CreatePartResponse> CreateSparePart(CreateSparePartRequest sparePartRequest);
+    Task<List<SparePartResponse>> GetAllSparePart();
+    Task<List<SparePartResponse>> GetPartByName(string query);
+    Task<List<SparePartResponse>> GetPartByCateName(string query);
 }

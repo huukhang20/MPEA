@@ -15,17 +15,17 @@ namespace MPEA.Infrastructure.FluentAPI
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.ToTable("user");
+            builder.ToTable("User");
 
             builder.HasKey(u => u.Id);
             builder.Property(u => u.Id).HasDefaultValueSql("gen_random_uuid()");
-            builder.Property(u => u.Username).IsRequired().HasMaxLength(50);
-            builder.Property(u => u.FullName).IsRequired().HasMaxLength(50);
-            builder.Property(u => u.Password).IsRequired().HasMaxLength(100);
-            builder.Property(u => u.Email).IsRequired().HasMaxLength(50);
-            builder.HasIndex(u => u.Email).IsUnique();
-            builder.Property(u => u.PhoneNumber).IsRequired().HasMaxLength(11);
-            builder.Property(u => u.Role).IsRequired();
+            builder.Property(u => u.Username).HasMaxLength(50);
+            builder.Property(u => u.FullName).HasMaxLength(50);
+            builder.Property(u => u.Password).HasMaxLength(100);
+            builder.Property(u => u.Email).HasMaxLength(50);
+            builder.HasIndex(u => u.Email);
+            builder.Property(u => u.PhoneNumber).HasMaxLength(11);
+            builder.Property(u => u.Role);
             builder.Property(u => u.Birthday);
             builder.Property(u => u.CreatedDate);
             builder.Property(u => u.UpdatedDate);

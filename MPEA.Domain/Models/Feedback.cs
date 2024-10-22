@@ -18,7 +18,6 @@ namespace MPEA.Domain.Models
 
         // Realtionships
 
-        public User User { get; set; }
-        public Exchange Exchange { get; set; }
+        public virtual User User { get; set; }
     }
 }

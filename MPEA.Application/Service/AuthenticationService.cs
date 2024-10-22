@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.Extensions.Configuration;
 using MPEA.Application.BaseModel;
 using MPEA.Application.IService;
 using MPEA.Application.Model.RequestModel.Authentication;
@@ -24,6 +25,16 @@ namespace MPEA.Application.Service
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMailService _mailService;
 
+        public AuthenticationService(IAuthentication authentication, IMapper mapper, IUnitOfWork unitOfWork, IMailService mailService)
+        {
+            _authentication = authentication;
+            _mapper = mapper;
+            _unitOfWork = unitOfWork;
+            _mailService = mailService;
+        }
+
+
+
         #region Login
 
         public async Task<LoginResponse> Login(LoginRequest userLogin)
@@ -38,7 +49,7 @@ namespace MPEA.Application.Service
                 if (check is true)
                 {
                     response.Success = true;
-                    response.Message = "Đăng nhập thành công";
+                    response.Message = "Login successfully";
                     response.JwtToken =
                         _authentication.GenerateToken(account);
                     _unitOfWork.UserRepository.Update(account);
@@ -48,13 +59,34 @@ namespace MPEA.Application.Service
                 }
 
                 response.Success = false;
-                response.Message = "Đăng nhập không thành công.";
+                response.Message = "Failed";
                 return response;
             }
 
             response.Success = false;
-            response.Message = "Đăng nhập không thành công.";
+            response.Message = "Failed";
             return response;
+        }
+
+        private static User GetDefaultMember()
+        {
+            User? Default = null;
+            using (StreamReader r = new StreamReader("appsettings.json"))
+            {
+                string json = r.ReadToEnd();
+                var config = new ConfigurationBuilder()
+                                .SetBasePath(Directory.GetCurrentDirectory())
+                                .AddJsonFile("appsettings.json", true, true)
+                                .Build();
+                string? email = config["DefaultAccount:Email"];
+                string? password = config["DefaultAccount:Password"];
+                Default = new User
+                {
+                    Email = email!,
+                    Password = password,
+                };
+            }
+            return Default;
         }
 
         #endregion
@@ -73,14 +105,14 @@ namespace MPEA.Application.Service
 
         #region Verify Email
 
-        //public async Task<bool?> VerifyEmail(Guid id)
-        //{
-        //    var user = await _unitOfWork.UserRepository.GetByIdAsync(id);
-        //    if (user == null) return false;
-        //    //user.Status = AccountStatus.Active.ToString();
-        //    await _unitOfWork.SaveChangesAsync();
-        //    return true;
-        //}
+        public async Task<bool?> VerifyEmail(Guid id)
+        {
+            var user = await _unitOfWork.UserRepository.GetByIdAsync(id);
+            if (user == null) return false;
+            user.Status = UserStatus.Active.ToString();
+            await _unitOfWork.SaveChangesAsync();
+            return true;
+        }
 
         #endregion
 
@@ -99,7 +131,7 @@ namespace MPEA.Application.Service
         {
             var prefix = role switch
             {
-                Role.Exchager => "EX",
+                Role.Exchanger => "EX",
                 Role.Staff => "ST",
                 Role.Admin => "AD",
                 _ => throw new ArgumentException("Vai trờ không hợp lệ")
@@ -142,15 +174,10 @@ namespace MPEA.Application.Service
 
         #endregion
 
-
         #region Create Account
 
         public async Task<RegisterResponse> CreateUser(CreateUserRequest createUser)
         {
-            //var validationResult = await ValidateCreateAccountRequest(createUser);
-            //if (!validationResult.IsValid)
-            //    // Handle validation failure
-            //    throw new ValidationException(validationResult.Errors);
             var response = new RegisterResponse();
 
             var account = _mapper.Map<User>(createUser);
@@ -166,23 +193,19 @@ namespace MPEA.Application.Service
 
             if (check is false)
             {
-                response.Message = "Tạo thất bại!";
+                response.Message = "Failed";
                 response.Success = true;
                 return response;
             }
 
-            response.Message = "Tạo mới thành công.";
+            response.Message = "Succefully";
             response.Success = true;
 
-            await _mailService.SendConfirmRegistration(account);
+            //await _mailService.SendConfirmRegistration(account);
 
             return response;
         }
 
-        public Task<bool?> VerifyEmail(Guid id)
-        {
-            throw new NotImplementedException();
-        }
 
         #endregion
 

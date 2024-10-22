@@ -22,6 +22,32 @@ namespace MPEA.Infrastructure.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("MPEA.Domain.Models.Category", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("text")
+                        .HasDefaultValue("gen_random_uuid()");
+
+                    b.Property<string>("Level")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ParentCateId")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ParentCateId");
+
+                    b.ToTable("Category", (string)null);
+                });
+
             modelBuilder.Entity("MPEA.Domain.Models.Chat", b =>
                 {
                     b.Property<string>("Id")
@@ -180,8 +206,6 @@ namespace MPEA.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ExchangeId");
-
                     b.HasIndex("UserId");
 
                     b.ToTable("Feedback", (string)null);
@@ -256,32 +280,45 @@ namespace MPEA.Infrastructure.Migrations
                         .HasColumnType("text")
                         .HasDefaultValueSql("gen_random_uuid()");
 
+                    b.Property<string>("CategoryId")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("text");
+
+                    b.Property<bool?>("IsWarranty")
+                        .HasColumnType("boolean");
+
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)");
 
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<double?>("Price")
+                        .HasColumnType("double precision");
 
-                    b.Property<string>("TechnicalSpecifications")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("character varying(150)");
+                    b.Property<string>("Status")
+                        .HasColumnType("text");
 
                     b.Property<string>("UserId")
                         .HasColumnType("text");
 
-                    b.Property<string>("WarrantyId")
+                    b.Property<string>("WarrntyImage")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("CategoryId");
 
-                    b.HasIndex("WarrantyId")
-                        .IsUnique();
+                    b.HasIndex("UserId");
 
                     b.ToTable("SparePart", (string)null);
                 });
@@ -306,27 +343,22 @@ namespace MPEA.Infrastructure.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)");
 
                     b.Property<string>("FullName")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)");
 
                     b.Property<string>("Password")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
 
                     b.Property<string>("PhoneNumber")
-                        .IsRequired()
                         .HasMaxLength(11)
                         .HasColumnType("character varying(11)");
 
                     b.Property<string>("Role")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Status")
@@ -336,16 +368,14 @@ namespace MPEA.Infrastructure.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Username")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Email")
-                        .IsUnique();
+                    b.HasIndex("Email");
 
-                    b.ToTable("user", (string)null);
+                    b.ToTable("User", (string)null);
                 });
 
             modelBuilder.Entity("MPEA.Domain.Models.UserAddress", b =>
@@ -386,19 +416,23 @@ namespace MPEA.Infrastructure.Migrations
             modelBuilder.Entity("MPEA.Domain.Models.Warranty", b =>
                 {
                     b.Property<string>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("text")
-                        .HasDefaultValueSql("gen_random_uuid()");
+                        .HasColumnType("text");
 
                     b.Property<DateTime?>("EndDate")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("SparePartId")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<DateTime?>("StartDate")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Warranty", (string)null);
+                    b.HasIndex("SparePartId");
+
+                    b.ToTable("Warrantys");
                 });
 
             modelBuilder.Entity("MPEA.Domain.Models.Wishlist", b =>
@@ -430,6 +464,15 @@ namespace MPEA.Infrastructure.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Wishlist", (string)null);
+                });
+
+            modelBuilder.Entity("MPEA.Domain.Models.Category", b =>
+                {
+                    b.HasOne("MPEA.Domain.Models.Category", "ParentCate")
+                        .WithMany("ChildCategories")
+                        .HasForeignKey("ParentCateId");
+
+                    b.Navigation("ParentCate");
                 });
 
             modelBuilder.Entity("MPEA.Domain.Models.Chat", b =>
@@ -495,16 +538,10 @@ namespace MPEA.Infrastructure.Migrations
 
             modelBuilder.Entity("MPEA.Domain.Models.Feedback", b =>
                 {
-                    b.HasOne("MPEA.Domain.Models.Exchange", "Exchange")
-                        .WithMany("Feedbacks")
-                        .HasForeignKey("ExchangeId");
-
                     b.HasOne("MPEA.Domain.Models.User", "User")
                         .WithMany("Feedbacks")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.Navigation("Exchange");
 
                     b.Navigation("User");
                 });
@@ -529,18 +566,18 @@ namespace MPEA.Infrastructure.Migrations
 
             modelBuilder.Entity("MPEA.Domain.Models.SparePart", b =>
                 {
+                    b.HasOne("MPEA.Domain.Models.Category", "Category")
+                        .WithMany("SpareParts")
+                        .HasForeignKey("CategoryId");
+
                     b.HasOne("MPEA.Domain.Models.User", "User")
                         .WithMany("SpareParts")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("MPEA.Domain.Models.Warranty", "Warranty")
-                        .WithOne("SparePart")
-                        .HasForeignKey("MPEA.Domain.Models.SparePart", "WarrantyId");
+                    b.Navigation("Category");
 
                     b.Navigation("User");
-
-                    b.Navigation("Warranty");
                 });
 
             modelBuilder.Entity("MPEA.Domain.Models.UserAddress", b =>
@@ -551,6 +588,17 @@ namespace MPEA.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("MPEA.Domain.Models.Warranty", b =>
+                {
+                    b.HasOne("MPEA.Domain.Models.SparePart", "SparePart")
+                        .WithMany()
+                        .HasForeignKey("SparePartId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("SparePart");
                 });
 
             modelBuilder.Entity("MPEA.Domain.Models.Wishlist", b =>
@@ -569,11 +617,16 @@ namespace MPEA.Infrastructure.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("MPEA.Domain.Models.Category", b =>
+                {
+                    b.Navigation("ChildCategories");
+
+                    b.Navigation("SpareParts");
+                });
+
             modelBuilder.Entity("MPEA.Domain.Models.Exchange", b =>
                 {
                     b.Navigation("ExchangeParts");
-
-                    b.Navigation("Feedbacks");
                 });
 
             modelBuilder.Entity("MPEA.Domain.Models.ExchangeType", b =>
@@ -611,12 +664,6 @@ namespace MPEA.Infrastructure.Migrations
                     b.Navigation("SpareParts");
 
                     b.Navigation("Wishlists");
-                });
-
-            modelBuilder.Entity("MPEA.Domain.Models.Warranty", b =>
-                {
-                    b.Navigation("SparePart")
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
