@@ -13,9 +13,11 @@ namespace MPEA.Application.Mapper
         {
             AddUserMapperConfig();
             AddCateMapperConfig();
+            AddSparePartMapperConfig();
         }
 
         partial void AddUserMapperConfig();
         partial void AddCateMapperConfig();
+        partial void AddSparePartMapperConfig();
     }
 }
