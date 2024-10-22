@@ -18,13 +18,14 @@ namespace MPEA.Infrastructure.FluentAPI
             builder.HasKey(x => x.Id);
             builder.Property(p => p.Id).HasDefaultValueSql("gen_random_uuid()");
             builder.Property(p => p.Name).HasMaxLength(50);
+            builder.Property(p => p.Price);
             builder.Property(p => p.Description).HasMaxLength(150);
             builder.Property(p => p.Status);
             builder.Property(p => p.Image);
             builder.Property(p => p.IsWarranty);
             builder.Property(p => p.WarrntyImage);
             builder.Property(p => p.Image);
-
+            builder.Property(p => p.CreatedDate).HasDefaultValueSql("now()");
             // Relationships
 
             builder.HasMany(p => p.Wishlist).WithOne(w => w.SparePart).HasForeignKey(w => w.SparePartId);

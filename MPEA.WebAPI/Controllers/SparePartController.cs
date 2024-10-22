@@ -18,6 +18,31 @@ namespace MPEA.WebAPI.Controllers
             _sparePartService = sparePartService;
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetAllSparePart()
+        {
+            try
+            {
+                var result = await _sparePartService.GetAllSparePart();
+                return Ok(new BaseResponseModel
+                {
+                    Status = Ok().StatusCode,
+                    Message = "Success",
+                    Response = result
+                });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new BaseFailedModel
+                {
+                    Status = BadRequest().StatusCode,
+                    Message = ex.Message,
+                    Result = false,
+                    Errors = ex
+                });
+            }
+        }
+
         [HttpPost("spare-part")]
         public async Task<IActionResult> CreateSparePart(CreateSparePartRequest request)
         {

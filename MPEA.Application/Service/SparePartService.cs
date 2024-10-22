@@ -38,4 +38,12 @@ public class SparePartService : ISparePartService
 
         return response;
     }
+
+    public async Task<List<SparePartResponse>> GetAllSparePart()
+    {
+        var list = await _unitOfWork.SparePartRepository.GetAllAsync();
+        var result = _mapper.Map<List<SparePartResponse>>(list);
+
+        return result;
+    }
 }

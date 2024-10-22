@@ -15,7 +15,8 @@ namespace MPEA.Application.Mapper
         partial void AddSparePartMapperConfig()
         {
             CreateMap<CreateSparePartRequest, SparePart>();
-            CreateMap<Category, CreatePartResponse>();
+            CreateMap<SparePart, SparePartResponse>()
+                .ForMember(p => p.CategoryName, act => act.MapFrom(src => src.Category.Name));
         }
     }
 }

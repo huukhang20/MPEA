@@ -12,6 +12,7 @@ namespace MPEA.Domain.Models
 
         public string? Id {  get; set; }
         public string? Name { get; set; }
+        public double? Price { get; set; }
         public string? CategoryId { get; set; }
         public string? Description { get; set; }
         public bool? IsWarranty { get; set; }
@@ -19,6 +20,7 @@ namespace MPEA.Domain.Models
         public string? UserId { get; set; }
         public string? Status { get; set; }
         public string? Image { get; set; }
+        public DateTime? CreatedDate { get; set; }
 
         // Relationships 
 

@@ -6,4 +6,5 @@ namespace MPEA.Application.IService;
 public interface ISparePartService
 {
     Task<CreatePartResponse> CreateSparePart(CreateSparePartRequest sparePartRequest);
+    Task<List<SparePartResponse>> GetAllSparePart();
 }
