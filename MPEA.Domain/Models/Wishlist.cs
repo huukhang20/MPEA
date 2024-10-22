@@ -16,11 +16,12 @@ namespace MPEA.Domain.Models
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public DateTime? DeletedAt { get; set; }
-        public string ImageUrl { get; set; } = string.Empty;
+        // public string ImageUrl { get; set; } = string.Empty;
 
         // Relationships
 
         public User User { get; set; }
         public SparePart SparePart { get; set; }
+        public string ImageUrl { get; set; }
     }
 }

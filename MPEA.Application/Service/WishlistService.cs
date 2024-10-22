@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using MPEA.Application.IRepository;
 using MPEA.Application.IService;
 using MPEA.Application.Model.RequestModel.WishlistRequest;
@@ -12,7 +13,7 @@ public class WishlistService : IWishlistService
     private readonly IMapper _mapper;
     private readonly IUnitOfWork _unitOfWork;
     private readonly IWishlistRepository _wishlistRepository;
-    private object _wishListRepository;
+    // private object _wishListRepository;
 
     public WishlistService(IUnitOfWork unitOfWork, IMapper mapper, IWishlistRepository wishlistRepository)
     {
@@ -20,8 +21,13 @@ public class WishlistService : IWishlistService
         _mapper = mapper;
         _wishlistRepository = wishlistRepository;
     }
+   
     public async Task<Wishlist> CreateWishList(WishlistRequest wishlistRequest)
     {
+        if (wishlistRequest == null)
+        {
+            throw new ArgumentNullException(nameof(wishlistRequest), "WishList request cannot be null.");
+        }
         if (string.IsNullOrWhiteSpace(wishlistRequest.UserId))
         {
             throw new ArgumentException("UserId is required.");
@@ -30,28 +36,26 @@ public class WishlistService : IWishlistService
         {
             throw new ArgumentException("SparePartId is required.");
         }
-
         if (wishlistRequest.CreatedAt.HasValue && wishlistRequest.CreatedAt.Value > DateTime.UtcNow)
         {
             throw new ArgumentException("CreatedAt cannot be in the future.");
         }
 
-        
         var wishlist = _mapper.Map<Wishlist>(wishlistRequest);
-    
-        
-        if (string.IsNullOrWhiteSpace(wishlistRequest.ImageUrl))
+        if (wishlist == null)
         {
-            wishlist.ImageUrl = "default-image-url"; 
+            throw new InvalidOperationException("Mapping failed, wishlist is null.");
         }
-        else
+
+        wishlist.ImageUrl = string.IsNullOrWhiteSpace(wishlistRequest.ImageUrl) ? "default-image-url" : wishlistRequest.ImageUrl;
+    
+        if (_unitOfWork.WishlistRepository == null)
         {
-            wishlist.ImageUrl = wishlistRequest.ImageUrl; 
+            throw new InvalidOperationException("WishList repository is not initialized.");
         }
 
         await _unitOfWork.WishlistRepository.AddAsync(wishlist);
         await _unitOfWork.SaveChangesAsync();
-
         return wishlist;
     }
 
@@ -90,13 +94,27 @@ public class WishlistService : IWishlistService
         return (response, response.Count);
     }
 
+    public async Task<Wishlist> DeleteAsyncWishList(string id)
+    {
+        var wishlist = await _wishlistRepository.GetByIdAsync(id);
+        if (wishlist == null || !wishlist.Any())
+        {
+            return null; // 
+        }
+        var itemToDelete = wishlist.FirstOrDefault();
+        if (itemToDelete == null)
+        {
+            return null; 
+        }
+        _wishlistRepository.DeleteAsync(itemToDelete);
+        await _unitOfWork.SaveChangesAsync();
+        return itemToDelete;
+    }
+
     // public async Task<Wishlist> UpdateWishList(UpdateWishlistRequest updateWishlistRequest)
     // {
     //     throw new NotImplementedException();
     // }
     //
-    // public async Task<Wishlist> DeleteWishList(string id)
-    // {
-    //     throw new NotImplementedException();
-    // }
+        
 }

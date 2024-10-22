@@ -11,5 +11,5 @@ public interface IWishlistService
     Task<WishListResponse> GetWishListById(string id);
     Task<(List<WishListResponse>?, int)> GetWishListByAccountId(string id);
     // Task<Wishlist> UpdateWishList(UpdateWishlistRequest updateWishlistRequest);
-    // Task<Wishlist> DeleteWishList(string id);
+     Task<Wishlist> DeleteAsyncWishList(string id);
 }

@@ -23,6 +23,8 @@ namespace MPEA.Infrastructure
             services.AddTransient<IAuthenticationService, AuthenticationService>();
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IWishlistService, WishlistService>();
+            services.AddScoped<IWishlistRepository, WishlistRepository>();
 
             //
             services.AddTransient<IUserRepository, UserRepository>();

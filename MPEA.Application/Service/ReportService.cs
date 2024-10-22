@@ -58,10 +58,9 @@ public class ReportService : IReportService
         var report = await GetReportById(updateReport.Id);
         if (report == null)
         {
-            return false; // Báo cáo không tồn tại
+            return false; 
         }
-
-        // Cập nhật thông tin báo cáo
+        
         report.UserId = updateReport.UserId;
         report.Content = updateReport.Content;
         report.Type = updateReport.Type;

@@ -24,4 +24,8 @@ public class WishlistRepository : GenericRepository<Wishlist> , IWishlistReposit
     {
         return await DbSet.Where(w => w.UserId == id).ToListAsync();
     }
+    public async Task DeleteAsync(Wishlist wishlist)
+    {
+        DbSet.Remove(wishlist);
+    }
 }

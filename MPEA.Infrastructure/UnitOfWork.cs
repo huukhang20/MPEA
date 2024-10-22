@@ -12,10 +12,11 @@ namespace MPEA.Infrastructure
     {
         private readonly AppDbContext _context;
 
-        public UnitOfWork(AppDbContext context, IUserRepository userRepository)
+        public UnitOfWork(AppDbContext context, IUserRepository userRepository , IWishlistRepository wishlistRepository)
         {
             _context = context;
             UserRepository = userRepository;
+            WishlistRepository = wishlistRepository;
         }
 
         public IUserRepository UserRepository { get; }
