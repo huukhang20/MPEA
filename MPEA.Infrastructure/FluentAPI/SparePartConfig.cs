@@ -26,6 +26,7 @@ namespace MPEA.Infrastructure.FluentAPI
             builder.Property(p => p.WarrntyImage);
             builder.Property(p => p.Image);
             builder.Property(p => p.CreatedDate).HasDefaultValueSql("now()");
+            builder.Property(p => p.UserId);
             // Relationships
 
             builder.HasMany(p => p.Wishlist).WithOne(w => w.SparePart).HasForeignKey(w => w.SparePartId);

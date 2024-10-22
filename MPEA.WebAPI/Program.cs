@@ -1,12 +1,12 @@
 using Microsoft.OpenApi.Models;
 using MPEA.Infrastructure;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddInfra(builder.Configuration);
 builder.Services.AddDbContext<AppDbContext>();
-
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

@@ -1,4 +1,5 @@
-﻿using MPEA.Application.IRepository;
+﻿using Microsoft.EntityFrameworkCore;
+using MPEA.Application.IRepository;
 using MPEA.Domain.Models;
 
 namespace MPEA.Infrastructure.Repositories;
@@ -7,5 +8,10 @@ public class SparePartRepository : GenericRepository<SparePart>, ISparePartRepos
 {
     public SparePartRepository(AppDbContext context) : base(context)
     {
+    }
+
+    public async Task<List<SparePart>> GetByName(string query)
+    {
+        return await DbSet.Where(e => e.Name.ToLower().Contains(query.ToLower())).ToListAsync();
     }
 }

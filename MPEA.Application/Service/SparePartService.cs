@@ -46,4 +46,11 @@ public class SparePartService : ISparePartService
 
         return result;
     }
+
+    public async Task<List<SparePartResponse>> GetPartByName(string query)
+    {
+        var list = await _unitOfWork.SparePartRepository.GetByName(query);
+        var result = _mapper.Map<List<SparePartResponse>>(list);
+        return result;
+    }
 }

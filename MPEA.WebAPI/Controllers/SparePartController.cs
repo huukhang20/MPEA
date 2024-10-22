@@ -68,5 +68,29 @@ namespace MPEA.WebAPI.Controllers
             }
         }
 
+        [HttpGet("search-by-name")]
+        public async Task<IActionResult> SearchByName(string query)
+        {
+            try
+            {
+                var result = await _sparePartService.GetPartByName(query);
+                return Ok(new BaseResponseModel
+                {
+                    Status = Ok().StatusCode,
+                    Message = "Success",
+                    Response = result
+                });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new BaseFailedModel
+                {
+                    Status = BadRequest().StatusCode,
+                    Message = ex.Message,
+                    Result = false,
+                    Errors = ex
+                });
+            }
+        }
     }
 }
