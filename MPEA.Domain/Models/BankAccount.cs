@@ -19,6 +19,6 @@ namespace MPEA.Domain.Models
 
         // Realtionships
 
-        public Wallet Wallet { get; set; }
+        public virtual Wallet Wallet { get; set; }
     }
 }

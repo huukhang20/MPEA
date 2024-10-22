@@ -8,4 +8,5 @@ public interface ISparePartService
     Task<CreatePartResponse> CreateSparePart(CreateSparePartRequest sparePartRequest);
     Task<List<SparePartResponse>> GetAllSparePart();
     Task<List<SparePartResponse>> GetPartByName(string query);
+    Task<List<SparePartResponse>> GetPartByCateName(string query);
 }

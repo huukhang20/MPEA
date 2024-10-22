@@ -92,5 +92,30 @@ namespace MPEA.WebAPI.Controllers
                 });
             }
         }
+
+        [HttpGet("search-by-cate")]
+        public async Task<IActionResult> SearchByCate(string query)
+        {
+            try
+            {
+                var result = await _sparePartService.GetPartByCateName(query);
+                return Ok(new BaseResponseModel
+                {
+                    Status = Ok().StatusCode,
+                    Message = "Success",
+                    Response = result
+                });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new BaseFailedModel
+                {
+                    Status = BadRequest().StatusCode,
+                    Message = ex.Message,
+                    Result = false,
+                    Errors = ex
+                });
+            }
+        }
     }
 }

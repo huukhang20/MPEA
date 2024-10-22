@@ -18,9 +18,9 @@ namespace MPEA.Domain.Models
 
         // Relationships
 
-        public User User { get; set; }
-        public ICollection<Payment> Payments { get; set; }  
-        public ICollection<BankAccount> BankAccount { get; set; }
+        public virtual User User { get; set; }
+        public virtual ICollection<Payment> Payments { get; set; }  
+        public virtual ICollection<BankAccount> BankAccount { get; set; }
 
     }
 }

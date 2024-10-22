@@ -24,10 +24,10 @@ namespace MPEA.Domain.Models
 
         // Relationships 
 
-        public User User { get; set; }
-        public Category Category { get; set; }
-        public ICollection<Wishlist> Wishlist { get; set; }
-        public ICollection<ExchangePart> ExchangePart { get; set; }
+        public virtual User User { get; set; }
+        public virtual Category Category { get; set; }
+        public virtual ICollection<Wishlist> Wishlist { get; set; }
+        public virtual ICollection<ExchangePart> ExchangePart { get; set; }
 
     }
 }

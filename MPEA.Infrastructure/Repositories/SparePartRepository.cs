@@ -14,4 +14,9 @@ public class SparePartRepository : GenericRepository<SparePart>, ISparePartRepos
     {
         return await DbSet.Where(e => e.Name.ToLower().Contains(query.ToLower())).ToListAsync();
     }
+
+    public async Task<List<SparePart>> GetByCateName(string query)
+    {
+        return await DbSet.Where(e => e.Category.Name.ToLower().Contains(query.ToLower())).ToListAsync();
+    }
 }
