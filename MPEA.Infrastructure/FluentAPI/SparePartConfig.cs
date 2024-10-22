@@ -13,7 +13,7 @@ namespace MPEA.Infrastructure.FluentAPI
     {
         public void Configure(EntityTypeBuilder<SparePart> builder)
         {
-            builder.ToTable("spare-part");
+            builder.ToTable("SparePart");
             
             builder.HasKey(x => x.Id);
             builder.Property(p => p.Id).HasDefaultValueSql("gen_random_uuid()");
@@ -21,12 +21,14 @@ namespace MPEA.Infrastructure.FluentAPI
             builder.Property(p => p.Description).HasMaxLength(150);
             builder.Property(p => p.Status);
             builder.Property(p => p.Image);
+            builder.Property(p => p.IsWarranty);
+            builder.Property(p => p.WarrntyImage);
+            builder.Property(p => p.Image);
 
             // Relationships
 
             builder.HasMany(p => p.Wishlist).WithOne(w => w.SparePart).HasForeignKey(w => w.SparePartId);
             builder.HasMany(p => p.ExchangePart).WithOne(ep => ep.SparePart).HasForeignKey(ep => ep.SparePartId);
-
         }
     }
 }
