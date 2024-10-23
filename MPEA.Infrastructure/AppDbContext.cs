@@ -17,7 +17,6 @@ namespace MPEA.Infrastructure
         public DbSet<SparePart> SpareParts  { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<UserAddress> UserAddresses { get; set; }
-        public DbSet<Warranty> Warrantys { get; set; }
         public DbSet<Wishlist> Wishlists { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)

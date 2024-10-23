@@ -30,7 +30,7 @@ namespace MPEA.Infrastructure
             services.AddTransient<ISparePartRepository, SparePartRepository>();
             services.AddScoped<ISparePartService, SparePartService>();
             // Wishlist
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            
             services.AddScoped<IWishlistService, WishlistService>();
             services.AddScoped<IWishlistRepository, WishlistRepository>();
 
@@ -38,7 +38,15 @@ namespace MPEA.Infrastructure
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddScoped<IUserService, UserService>();
 
+            //
+            services.AddTransient<IReportRepository, ReportRepository>();
+            services.AddScoped<IReportService, ReportService>();
 
+            //
+            services.AddTransient<INotificationRepository, NotificationRepository>();
+            services.AddScoped<INotificationService, NotificationService>();
+
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddSingleton<IMailService, MailService>();
             services.AddAutoMapper(typeof(MapperConfig).Assembly);
             return services;
