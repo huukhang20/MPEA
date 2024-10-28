@@ -1,5 +1,4 @@
 name: Deploy Web API
-
 on:
   push:
     branches:
@@ -25,7 +24,13 @@ jobs:
         run: dotnet publish -c Release -o ./publish
 
       - name: Deploy to EC2
+        env:
+          EC2_HOST: ${{ secrets.EC2_HOST }}
+          EC2_USER: ${{ secrets.EC2_USER }}
+          EC2_KEY: ${{ secrets.EC2_KEY }}
         run: |
-          echo "Deploying to EC2 instance..."
-          scp -o StrictHostKeyChecking=no -i ${{ env.EC2_KEY }} -r ./publish/* ${{ env.EC2_USER }}@${{ env.EC2_HOST }}:/home/${{ env.EC2_USER }}/MPEA/
-          ssh -o StrictHostKeyChecking=no -i ${{ env.EC2_KEY }} ${{ env.EC2_USER }}@${{ env.EC2_HOST }} "cd /home/${{ env.EC2_USER }}/MPEA && nohup dotnet MPEA.dll > log.txt 2>&1 &"
+          mkdir -p ~/.ssh
+          echo "${EC2_KEY}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          scp -o StrictHostKeyChecking=no -r ./publish/* ${EC2_USER}@${EC2_HOST}:/var/www/myapp
+          ssh -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} 'sudo systemctl restart kestrel-myapp.service'
