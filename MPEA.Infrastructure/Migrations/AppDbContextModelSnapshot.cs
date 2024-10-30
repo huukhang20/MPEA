@@ -84,7 +84,7 @@ namespace MPEA.Infrastructure.Migrations
 
             modelBuilder.Entity("MPEA.Domain.Models.Exchange", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
                         .HasDefaultValueSql("gen_random_uuid()");
@@ -98,10 +98,10 @@ namespace MPEA.Infrastructure.Migrations
                     b.Property<string>("ExchangeType")
                         .HasColumnType("text");
 
-                    b.Property<Guid>("OffererId")
+                    b.Property<Guid?>("OffererId")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("ProviderId")
+                    b.Property<Guid?>("ProviderId")
                         .HasColumnType("uuid");
 
                     b.Property<string>("Status")
@@ -153,18 +153,18 @@ namespace MPEA.Infrastructure.Migrations
 
             modelBuilder.Entity("MPEA.Domain.Models.ExchangeItem", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
                         .HasDefaultValueSql("gen_random_uuid()");
 
-                    b.Property<Guid>("ExchangeId")
+                    b.Property<Guid?>("ExchangeId")
                         .HasColumnType("uuid");
 
                     b.Property<int?>("Quantity")
                         .HasColumnType("integer");
 
-                    b.Property<Guid>("SparePartId")
+                    b.Property<Guid?>("SparePartId")
                         .HasColumnType("uuid");
 
                     b.HasKey("Id");
@@ -178,7 +178,7 @@ namespace MPEA.Infrastructure.Migrations
 
             modelBuilder.Entity("MPEA.Domain.Models.ExchangeTerm", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
                         .HasDefaultValueSql("gen_random_uuid()");
@@ -237,7 +237,7 @@ namespace MPEA.Infrastructure.Migrations
 
             modelBuilder.Entity("MPEA.Domain.Models.Membership", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
                         .HasDefaultValueSql("gen_random_uuid()");
@@ -266,7 +266,7 @@ namespace MPEA.Infrastructure.Migrations
 
             modelBuilder.Entity("MPEA.Domain.Models.Notification", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
                         .HasDefaultValueSql("gen_random_uuid()");
@@ -288,7 +288,7 @@ namespace MPEA.Infrastructure.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("text");
 
-                    b.Property<Guid>("UserId")
+                    b.Property<Guid?>("UserId")
                         .HasColumnType("uuid");
 
                     b.HasKey("Id");
@@ -300,7 +300,7 @@ namespace MPEA.Infrastructure.Migrations
 
             modelBuilder.Entity("MPEA.Domain.Models.Payment", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
                         .HasDefaultValueSql("gen_random_uuid()");
@@ -313,16 +313,16 @@ namespace MPEA.Infrastructure.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasDefaultValueSql("now()");
 
-                    b.Property<Guid>("ExchangeId")
+                    b.Property<Guid?>("ExchangeId")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("PayerId")
+                    b.Property<Guid?>("PayerId")
                         .HasColumnType("uuid");
 
                     b.Property<string>("PaymentMethod")
                         .HasColumnType("text");
 
-                    b.Property<Guid>("PurchaseId")
+                    b.Property<Guid?>("PurchaseId")
                         .HasColumnType("uuid");
 
                     b.Property<string>("Status")
@@ -343,12 +343,12 @@ namespace MPEA.Infrastructure.Migrations
 
             modelBuilder.Entity("MPEA.Domain.Models.Purchase", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
                         .HasDefaultValueSql("gen_random_uuid()");
 
-                    b.Property<Guid>("BuyerId")
+                    b.Property<Guid?>("BuyerId")
                         .HasColumnType("uuid");
 
                     b.Property<DateTime?>("CreatedDate")
@@ -356,7 +356,7 @@ namespace MPEA.Infrastructure.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasDefaultValueSql("now()");
 
-                    b.Property<Guid>("SellerId")
+                    b.Property<Guid?>("SellerId")
                         .HasColumnType("uuid");
 
                     b.Property<string>("Status")
@@ -373,18 +373,18 @@ namespace MPEA.Infrastructure.Migrations
 
             modelBuilder.Entity("MPEA.Domain.Models.PurchaseItem", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
                         .HasDefaultValueSql("gen_random_uuid()");
 
-                    b.Property<Guid>("PartId")
+                    b.Property<Guid?>("PartId")
                         .HasColumnType("uuid");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("numeric");
 
-                    b.Property<Guid>("PurchaseId")
+                    b.Property<Guid?>("PurchaseId")
                         .HasColumnType("uuid");
 
                     b.Property<int>("Quantity")
@@ -401,7 +401,7 @@ namespace MPEA.Infrastructure.Migrations
 
             modelBuilder.Entity("MPEA.Domain.Models.RechargeHistory", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
                         .HasDefaultValueSql("gen_random_uuid()");
@@ -420,7 +420,7 @@ namespace MPEA.Infrastructure.Migrations
                     b.Property<string>("Status")
                         .HasColumnType("text");
 
-                    b.Property<Guid>("UserId")
+                    b.Property<Guid?>("UserId")
                         .HasColumnType("uuid");
 
                     b.HasKey("Id");
@@ -432,7 +432,7 @@ namespace MPEA.Infrastructure.Migrations
 
             modelBuilder.Entity("MPEA.Domain.Models.Report", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
                         .HasDefaultValueSql("gen_random_uuid()");
@@ -442,7 +442,7 @@ namespace MPEA.Infrastructure.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasDefaultValueSql("now()");
 
-                    b.Property<Guid>("PartId")
+                    b.Property<Guid?>("PartId")
                         .HasColumnType("uuid");
 
                     b.Property<string>("Reason")
@@ -457,7 +457,7 @@ namespace MPEA.Infrastructure.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("text");
 
-                    b.Property<Guid>("UserId")
+                    b.Property<Guid?>("UserId")
                         .HasColumnType("uuid");
 
                     b.HasKey("Id");
@@ -471,12 +471,12 @@ namespace MPEA.Infrastructure.Migrations
 
             modelBuilder.Entity("MPEA.Domain.Models.SparePart", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
                         .HasDefaultValueSql("gen_random_uuid()");
 
-                    b.Property<Guid>("CategoryId")
+                    b.Property<Guid?>("CategoryId")
                         .HasColumnType("uuid");
 
                     b.Property<DateTime?>("CreatedDate")
@@ -504,7 +504,7 @@ namespace MPEA.Infrastructure.Migrations
                     b.Property<string>("Status")
                         .HasColumnType("text");
 
-                    b.Property<Guid>("UserId")
+                    b.Property<Guid?>("UserId")
                         .HasColumnType("uuid");
 
                     b.Property<string>("WarrntyImage")
@@ -521,7 +521,7 @@ namespace MPEA.Infrastructure.Migrations
 
             modelBuilder.Entity("MPEA.Domain.Models.User", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
                         .HasDefaultValueSql("gen_random_uuid()");
@@ -546,7 +546,7 @@ namespace MPEA.Infrastructure.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)");
 
-                    b.Property<Guid>("MembershipId")
+                    b.Property<Guid?>("MembershipId")
                         .HasColumnType("uuid");
 
                     b.Property<string>("Password")
@@ -581,7 +581,7 @@ namespace MPEA.Infrastructure.Migrations
 
             modelBuilder.Entity("MPEA.Domain.Models.UserAddress", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
                         .HasDefaultValueSql("gen_random_uuid()");
@@ -606,7 +606,7 @@ namespace MPEA.Infrastructure.Migrations
                     b.Property<string>("Street")
                         .HasColumnType("text");
 
-                    b.Property<Guid>("UserId")
+                    b.Property<Guid?>("UserId")
                         .HasColumnType("uuid");
 
                     b.HasKey("Id");
@@ -707,15 +707,11 @@ namespace MPEA.Infrastructure.Migrations
                 {
                     b.HasOne("MPEA.Domain.Models.User", "Offerer")
                         .WithMany("ExchangeOffers")
-                        .HasForeignKey("OffererId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("OffererId");
 
                     b.HasOne("MPEA.Domain.Models.User", "Provider")
                         .WithMany("ExchangeProviders")
-                        .HasForeignKey("ProviderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProviderId");
 
                     b.Navigation("Offerer");
 
@@ -747,15 +743,11 @@ namespace MPEA.Infrastructure.Migrations
                 {
                     b.HasOne("MPEA.Domain.Models.Exchange", "Exchange")
                         .WithMany("Items")
-                        .HasForeignKey("ExchangeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ExchangeId");
 
                     b.HasOne("MPEA.Domain.Models.SparePart", "SparePart")
                         .WithMany("ExchangeItems")
-                        .HasForeignKey("SparePartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("SparePartId");
 
                     b.Navigation("Exchange");
 
@@ -781,9 +773,7 @@ namespace MPEA.Infrastructure.Migrations
                 {
                     b.HasOne("MPEA.Domain.Models.User", "User")
                         .WithMany("Notifications")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("User");
                 });
@@ -792,21 +782,15 @@ namespace MPEA.Infrastructure.Migrations
                 {
                     b.HasOne("MPEA.Domain.Models.Exchange", "Exchange")
                         .WithOne("Payment")
-                        .HasForeignKey("MPEA.Domain.Models.Payment", "ExchangeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("MPEA.Domain.Models.Payment", "ExchangeId");
 
                     b.HasOne("MPEA.Domain.Models.User", "Payer")
                         .WithMany("Payments")
-                        .HasForeignKey("PayerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PayerId");
 
                     b.HasOne("MPEA.Domain.Models.Purchase", "Purchase")
                         .WithOne("Payment")
-                        .HasForeignKey("MPEA.Domain.Models.Payment", "PurchaseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("MPEA.Domain.Models.Payment", "PurchaseId");
 
                     b.Navigation("Exchange");
 
@@ -819,15 +803,11 @@ namespace MPEA.Infrastructure.Migrations
                 {
                     b.HasOne("MPEA.Domain.Models.User", "Buyer")
                         .WithMany("Bought")
-                        .HasForeignKey("BuyerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("BuyerId");
 
                     b.HasOne("MPEA.Domain.Models.User", "Seller")
                         .WithMany("Sold")
-                        .HasForeignKey("SellerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("SellerId");
 
                     b.Navigation("Buyer");
 
@@ -838,15 +818,11 @@ namespace MPEA.Infrastructure.Migrations
                 {
                     b.HasOne("MPEA.Domain.Models.SparePart", "SparePart")
                         .WithMany("PurchaseItems")
-                        .HasForeignKey("PartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PartId");
 
                     b.HasOne("MPEA.Domain.Models.Purchase", "Purchase")
                         .WithMany("PurchaseItems")
-                        .HasForeignKey("PurchaseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PurchaseId");
 
                     b.Navigation("Purchase");
 
@@ -857,9 +833,7 @@ namespace MPEA.Infrastructure.Migrations
                 {
                     b.HasOne("MPEA.Domain.Models.User", "User")
                         .WithMany("RechargeHistories")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("User");
                 });
@@ -868,15 +842,11 @@ namespace MPEA.Infrastructure.Migrations
                 {
                     b.HasOne("MPEA.Domain.Models.SparePart", "SparePart")
                         .WithMany("Reports")
-                        .HasForeignKey("PartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PartId");
 
                     b.HasOne("MPEA.Domain.Models.User", "User")
                         .WithMany("Reports")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("SparePart");
 
@@ -887,15 +857,11 @@ namespace MPEA.Infrastructure.Migrations
                 {
                     b.HasOne("MPEA.Domain.Models.Category", "Category")
                         .WithMany("SpareParts")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CategoryId");
 
                     b.HasOne("MPEA.Domain.Models.User", "User")
                         .WithMany("SpareParts")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("Category");
 
@@ -906,9 +872,7 @@ namespace MPEA.Infrastructure.Migrations
                 {
                     b.HasOne("MPEA.Domain.Models.Membership", "Membership")
                         .WithMany("Users")
-                        .HasForeignKey("MembershipId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("MembershipId");
 
                     b.Navigation("Membership");
                 });
@@ -917,9 +881,7 @@ namespace MPEA.Infrastructure.Migrations
                 {
                     b.HasOne("MPEA.Domain.Models.User", "User")
                         .WithMany("Addresses")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("User");
                 });

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace MPEA.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class UpdateDB301024 : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -72,7 +72,7 @@ namespace MPEA.Infrastructure.Migrations
                     Email = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
                     PhoneNumber = table.Column<string>(type: "character varying(11)", maxLength: 11, nullable: true),
                     AvatarURL = table.Column<string>(type: "text", nullable: true),
-                    MembershipId = table.Column<Guid>(type: "uuid", nullable: false),
+                    MembershipId = table.Column<Guid>(type: "uuid", nullable: true),
                     Role = table.Column<string>(type: "text", nullable: true),
                     Code = table.Column<string>(type: "text", nullable: true),
                     Status = table.Column<string>(type: "text", nullable: true),
@@ -87,8 +87,7 @@ namespace MPEA.Infrastructure.Migrations
                         name: "FK_User_Membership_MembershipId",
                         column: x => x.MembershipId,
                         principalTable: "Membership",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -96,7 +95,7 @@ namespace MPEA.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false, defaultValueSql: "gen_random_uuid()"),
-                    UserId = table.Column<Guid>(type: "uuid", nullable: false),
+                    UserId = table.Column<Guid>(type: "uuid", nullable: true),
                     Street = table.Column<string>(type: "text", nullable: true),
                     City = table.Column<string>(type: "text", nullable: true),
                     Country = table.Column<string>(type: "text", nullable: true),
@@ -111,8 +110,7 @@ namespace MPEA.Infrastructure.Migrations
                         name: "FK_Address_User_UserId",
                         column: x => x.UserId,
                         principalTable: "User",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -146,8 +144,8 @@ namespace MPEA.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false, defaultValueSql: "gen_random_uuid()"),
-                    ProviderId = table.Column<Guid>(type: "uuid", nullable: false),
-                    OffererId = table.Column<Guid>(type: "uuid", nullable: false),
+                    ProviderId = table.Column<Guid>(type: "uuid", nullable: true),
+                    OffererId = table.Column<Guid>(type: "uuid", nullable: true),
                     Status = table.Column<string>(type: "text", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     CompletedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
@@ -160,14 +158,12 @@ namespace MPEA.Infrastructure.Migrations
                         name: "FK_Exchange_User_OffererId",
                         column: x => x.OffererId,
                         principalTable: "User",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Exchange_User_ProviderId",
                         column: x => x.ProviderId,
                         principalTable: "User",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -206,7 +202,7 @@ namespace MPEA.Infrastructure.Migrations
                     Description = table.Column<string>(type: "text", nullable: true),
                     Status = table.Column<string>(type: "text", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true, defaultValueSql: "now()"),
-                    UserId = table.Column<Guid>(type: "uuid", nullable: false),
+                    UserId = table.Column<Guid>(type: "uuid", nullable: true),
                     IsRead = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
@@ -216,8 +212,7 @@ namespace MPEA.Infrastructure.Migrations
                         name: "FK_Notification_User_UserId",
                         column: x => x.UserId,
                         principalTable: "User",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -225,8 +220,8 @@ namespace MPEA.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false, defaultValueSql: "gen_random_uuid()"),
-                    SellerId = table.Column<Guid>(type: "uuid", nullable: false),
-                    BuyerId = table.Column<Guid>(type: "uuid", nullable: false),
+                    SellerId = table.Column<Guid>(type: "uuid", nullable: true),
+                    BuyerId = table.Column<Guid>(type: "uuid", nullable: true),
                     Status = table.Column<string>(type: "text", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true, defaultValueSql: "now()")
                 },
@@ -237,14 +232,12 @@ namespace MPEA.Infrastructure.Migrations
                         name: "FK_Purchase_User_BuyerId",
                         column: x => x.BuyerId,
                         principalTable: "User",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Purchase_User_SellerId",
                         column: x => x.SellerId,
                         principalTable: "User",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -252,7 +245,7 @@ namespace MPEA.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false, defaultValueSql: "gen_random_uuid()"),
-                    UserId = table.Column<Guid>(type: "uuid", nullable: false),
+                    UserId = table.Column<Guid>(type: "uuid", nullable: true),
                     Amount = table.Column<decimal>(type: "numeric", nullable: true),
                     PaymentMethod = table.Column<string>(type: "text", nullable: true),
                     Status = table.Column<string>(type: "text", nullable: true),
@@ -265,8 +258,7 @@ namespace MPEA.Infrastructure.Migrations
                         name: "FK_RechargeHistory_User_UserId",
                         column: x => x.UserId,
                         principalTable: "User",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -276,11 +268,11 @@ namespace MPEA.Infrastructure.Migrations
                     Id = table.Column<Guid>(type: "uuid", nullable: false, defaultValueSql: "gen_random_uuid()"),
                     Name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
                     Price = table.Column<double>(type: "double precision", nullable: true),
-                    CategoryId = table.Column<Guid>(type: "uuid", nullable: false),
+                    CategoryId = table.Column<Guid>(type: "uuid", nullable: true),
                     Description = table.Column<string>(type: "character varying(150)", maxLength: 150, nullable: true),
                     IsWarranty = table.Column<bool>(type: "boolean", nullable: true),
                     WarrntyImage = table.Column<string>(type: "text", nullable: true),
-                    UserId = table.Column<Guid>(type: "uuid", nullable: false),
+                    UserId = table.Column<Guid>(type: "uuid", nullable: true),
                     Status = table.Column<string>(type: "text", nullable: true),
                     Image = table.Column<string>(type: "text", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true, defaultValueSql: "now()")
@@ -292,14 +284,12 @@ namespace MPEA.Infrastructure.Migrations
                         name: "FK_SparePart_Category_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Category",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_SparePart_User_UserId",
                         column: x => x.UserId,
                         principalTable: "User",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -358,9 +348,9 @@ namespace MPEA.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false, defaultValueSql: "gen_random_uuid()"),
-                    PurchaseId = table.Column<Guid>(type: "uuid", nullable: false),
-                    ExchangeId = table.Column<Guid>(type: "uuid", nullable: false),
-                    PayerId = table.Column<Guid>(type: "uuid", nullable: false),
+                    PurchaseId = table.Column<Guid>(type: "uuid", nullable: true),
+                    ExchangeId = table.Column<Guid>(type: "uuid", nullable: true),
+                    PayerId = table.Column<Guid>(type: "uuid", nullable: true),
                     Amount = table.Column<decimal>(type: "numeric", nullable: false),
                     PaymentMethod = table.Column<string>(type: "text", nullable: true),
                     Status = table.Column<string>(type: "text", nullable: true),
@@ -373,20 +363,17 @@ namespace MPEA.Infrastructure.Migrations
                         name: "FK_Payment_Exchange_ExchangeId",
                         column: x => x.ExchangeId,
                         principalTable: "Exchange",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Payment_Purchase_PurchaseId",
                         column: x => x.PurchaseId,
                         principalTable: "Purchase",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Payment_User_PayerId",
                         column: x => x.PayerId,
                         principalTable: "User",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -394,8 +381,8 @@ namespace MPEA.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false, defaultValueSql: "gen_random_uuid()"),
-                    ExchangeId = table.Column<Guid>(type: "uuid", nullable: false),
-                    SparePartId = table.Column<Guid>(type: "uuid", nullable: false),
+                    ExchangeId = table.Column<Guid>(type: "uuid", nullable: true),
+                    SparePartId = table.Column<Guid>(type: "uuid", nullable: true),
                     Quantity = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
@@ -405,14 +392,12 @@ namespace MPEA.Infrastructure.Migrations
                         name: "FK_ExchangeItem_Exchange_ExchangeId",
                         column: x => x.ExchangeId,
                         principalTable: "Exchange",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_ExchangeItem_SparePart_SparePartId",
                         column: x => x.SparePartId,
                         principalTable: "SparePart",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -420,8 +405,8 @@ namespace MPEA.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false, defaultValueSql: "gen_random_uuid()"),
-                    PurchaseId = table.Column<Guid>(type: "uuid", nullable: false),
-                    PartId = table.Column<Guid>(type: "uuid", nullable: false),
+                    PurchaseId = table.Column<Guid>(type: "uuid", nullable: true),
+                    PartId = table.Column<Guid>(type: "uuid", nullable: true),
                     Quantity = table.Column<int>(type: "integer", nullable: false),
                     Price = table.Column<decimal>(type: "numeric", nullable: false)
                 },
@@ -432,14 +417,12 @@ namespace MPEA.Infrastructure.Migrations
                         name: "FK_PurchaseItem_Purchase_PurchaseId",
                         column: x => x.PurchaseId,
                         principalTable: "Purchase",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_PurchaseItem_SparePart_PartId",
                         column: x => x.PartId,
                         principalTable: "SparePart",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -447,8 +430,8 @@ namespace MPEA.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false, defaultValueSql: "gen_random_uuid()"),
-                    UserId = table.Column<Guid>(type: "uuid", nullable: false),
-                    PartId = table.Column<Guid>(type: "uuid", nullable: false),
+                    UserId = table.Column<Guid>(type: "uuid", nullable: true),
+                    PartId = table.Column<Guid>(type: "uuid", nullable: true),
                     Title = table.Column<string>(type: "text", nullable: true),
                     Reason = table.Column<string>(type: "text", nullable: true),
                     Status = table.Column<string>(type: "text", nullable: true),
@@ -462,14 +445,12 @@ namespace MPEA.Infrastructure.Migrations
                         name: "FK_Report_SparePart_PartId",
                         column: x => x.PartId,
                         principalTable: "SparePart",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Report_User_UserId",
                         column: x => x.UserId,
                         principalTable: "User",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(

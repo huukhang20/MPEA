@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using MPEA.Domain.Models;
 using System.Reflection;
+using System.Reflection.Emit;
 
 namespace MPEA.Infrastructure
 {
