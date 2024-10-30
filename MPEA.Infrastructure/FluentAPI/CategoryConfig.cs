@@ -16,7 +16,7 @@ namespace MPEA.Infrastructure.FluentAPI
             builder.ToTable("Category");
 
             builder.HasKey(c => c.Id);
-            builder.Property(c => c.Id).HasDefaultValue("gen_random_uuid()");
+            builder.Property(c => c.Id).HasDefaultValueSql("gen_random_uuid()");
             builder.Property(c => c.Name);
             builder.Property(c => c.Level);
             builder.Property(c => c.Status);

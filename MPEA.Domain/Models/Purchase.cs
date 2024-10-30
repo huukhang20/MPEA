@@ -8,9 +8,9 @@ namespace MPEA.Domain.Models
 {
     public class Purchase
     {
-        public Guid? Id { get; set; }
-        public Guid? SellerId { get; set; }
-        public Guid? BuyerId { get; set; }
+        public Guid Id { get; set; }
+        public Guid SellerId { get; set; }
+        public Guid BuyerId { get; set; }
         public string? Status { get; set; }
         public DateTime? CreatedDate { get; set; }
 

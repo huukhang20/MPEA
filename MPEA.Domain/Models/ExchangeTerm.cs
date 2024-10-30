@@ -8,7 +8,7 @@ namespace MPEA.Domain.Models
 {
     public class ExchangeTerm
     {
-        public Guid? Id { get; set; }
+        public Guid Id { get; set; }
         public string? Description { get; set; }
         public bool? IsDefault { get; set; }
         public DateTime? CreatedDate { get; set; }

@@ -10,9 +10,9 @@ namespace MPEA.Domain.Models
     {
         // Properties
 
-        public Guid? Id { get; set; }
-        public Guid? ExchangeId {  get; set; }
-        public Guid? SparePartId { get; set; }
+        public Guid Id { get; set; }
+        public Guid ExchangeId {  get; set; }
+        public Guid SparePartId { get; set; }
         public int? Quantity { get; set; }
 
         // Relationships

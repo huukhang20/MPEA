@@ -21,7 +21,7 @@ namespace MPEA.Domain.Models
         public DateTime? ResolvedDate { get; set; }
 
         // Relationships
-        public User? User { get; set; }
-        public SparePart? SparePart { get; set; }
+        public virtual User? User { get; set; }
+        public virtual SparePart? SparePart { get; set; }
     }
 }

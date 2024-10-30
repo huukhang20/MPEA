@@ -17,12 +17,12 @@ public class WishlistRepository : GenericRepository<Wishlist> , IWishlistReposit
 
     public async Task<List<Wishlist>> GetByIdAsync(string id)
     {
-        return await DbSet.Where(n => n.UserId == id.ToString()).ToListAsync();
+        return await DbSet.Where(n => n.Id.ToString() == id.ToString()).ToListAsync();
     }
 
     public async Task<List<Wishlist>> GetWishListByAccountId(string id)
     {
-        return await DbSet.Where(w => w.UserId == id).ToListAsync();
+        return await DbSet.Where(w => w.UserId.ToString() == id).ToListAsync();
     }
     public async Task DeleteAsync(Wishlist wishlist)
     {

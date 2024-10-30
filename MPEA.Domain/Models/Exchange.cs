@@ -10,9 +10,9 @@ namespace MPEA.Domain.Models
     {
         // Properties
 
-        public Guid? Id { get; set; }
-        public Guid? ProviderId { get; set; }   
-        public Guid? OffererId { get; set; }
+        public Guid Id { get; set; }
+        public Guid ProviderId { get; set; }   
+        public Guid OffererId { get; set; }
         public string? Status {  get; set; }
         public DateTime? CreatedDate { get; set; }
         public DateTime? CompletedDate { get; set; }
@@ -23,7 +23,7 @@ namespace MPEA.Domain.Models
         public virtual User? Provider { get; set; }
         public virtual User? Offerer { get; set; }
         public virtual Payment? Payment { get; set; }
-        public ICollection<ExchangeAgreement>? Agreement { get; set; }
-        public ICollection<ExchangeItem>? Items { get; set; }
+        public virtual ICollection<ExchangeAgreement>? Agreement { get; set; }
+        public virtual ICollection<ExchangeItem>? Items { get; set; }
     }
 }
