@@ -18,11 +18,12 @@ namespace MPEA.Infrastructure.FluentAPI
 
             builder.HasKey(x => x.Id);
             builder.Property(n => n.Id).HasDefaultValueSql("gen_random_uuid()");
-            builder.Property(n => n.Title).IsRequired().HasMaxLength(50);
-            builder.Property(n => n.Description).IsRequired().HasMaxLength(150);
+            builder.Property(n => n.Title);
+            builder.Property(n => n.Description);
             builder.Property(n => n.Status);
-            builder.Property(n => n.CreatedAt);
+            builder.Property(n => n.CreatedDate).HasDefaultValueSql("now()");
 
+            builder.HasOne(n => n.User).WithMany(u => u.Notifications).HasForeignKey(n => n.UserId);
         }
     }
 }

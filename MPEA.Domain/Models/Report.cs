@@ -11,14 +11,17 @@ namespace MPEA.Domain.Models
     {
         // Properties
 
-        public string? Id { get; set; }
-        public string? UserId { get; set; }
-        public string? Content { get; set; }
-        public string? Type { get; set; }
-        public DateTime? CreatedAt { get; set; }
+        public Guid Id { get; set; }
+        public Guid UserId { get; set; }
+        public Guid PartId { get; set; }
+        public string? Title { get; set; }
+        public string? Reason { get; set; }
+        public string? Status { get; set; }
+        public DateTime? CreatedDate { get; set; }
+        public DateTime? ResolvedDate { get; set; }
 
         // Relationships
-
-        public virtual User User { get; set; }
+        public User? User { get; set; }
+        public SparePart? SparePart { get; set; }
     }
 }

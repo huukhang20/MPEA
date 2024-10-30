@@ -8,12 +8,20 @@ namespace MPEA.Domain.Models
 {
     public class Payment
     {
-        public string? PaymentId { get; set; }
-        public string? ExchangeId { get; set; }
+        public Guid Id { get; set; }
+        public Guid PurchaseId { get; set; }
+        public Guid ExchangeId { get; set; }
+        public Guid PayerId { get; set; }
+        public decimal Amount { get; set; }
+        public string? PaymentMethod { get; set; }
+        public string? Status { get; set; }
+        public DateTime? CreatedDate { get; set; }
+
 
         // Realtionships
+        public virtual User? Payer { get; set; }
+        public virtual Purchase? Purchase { get; set; }
+        public virtual Exchange? Exchange { get; set; }
 
-        public virtual Wallet Wallet { get; set; }
-        public virtual Wallet Exchagne { get; set; }
     }
 }

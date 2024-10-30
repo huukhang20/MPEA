@@ -6,21 +6,15 @@ using System.Threading.Tasks;
 
 namespace MPEA.Domain.Models
 {
-    public class Notification
+    public class RechargeHistory
     {
-        // Properties
-
-        public Guid Id { get; set; }
-        public string? Title { get; set; }
-        public string? Description { get; set; }
+        public Guid? Id { get; set; }
+        public Guid? UserId { get; set; }
+        public decimal? Amount { get; set; }
+        public string? PaymentMethod { get; set; }
         public string? Status { get; set; }
         public DateTime? CreatedDate { get; set; }
-        public Guid UserId { get; set; }
-        public bool IsRead { get; set; }
-
-        // Relationships
 
         public virtual User? User { get; set; }
-        
     }
 }

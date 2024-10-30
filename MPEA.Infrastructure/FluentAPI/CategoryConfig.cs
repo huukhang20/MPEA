@@ -22,7 +22,6 @@ namespace MPEA.Infrastructure.FluentAPI
             builder.Property(c => c.Status);
 
             builder.HasOne(c => c.ParentCate).WithMany(p => p.ChildCategories).HasForeignKey(c => c.ParentCateId);
-            builder.HasMany(c => c.SpareParts).WithOne(p => p.Category).HasForeignKey(p => p.CategoryId);
         }
     }
 }

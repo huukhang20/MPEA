@@ -18,14 +18,14 @@ namespace MPEA.Infrastructure.FluentAPI
             builder.HasKey(e => e.Id);
             builder.Property(e => e.Id).HasDefaultValueSql("gen_random_uuid()");
             builder.Property(e => e.Status);
-            builder.Property(e => e.AgreementTerm);
             builder.Property(e => e.CreatedDate);
-            builder.Property(e => e.UpdatedDate);
+            builder.Property(e => e.CompletedDate);
+            builder.Property(e => e.ExchangeType);
 
             // Relationships
 
-            builder.HasMany(e => e.ExchangeParts).WithOne(ep => ep.Exchange).HasForeignKey(ep => ep.ExchangeId);
-
+            builder.HasOne(e => e.Provider).WithMany(p => p.ExchangeProviders).HasForeignKey(p => p.ProviderId);
+            builder.HasOne(e => e.Offerer).WithMany(o => o.ExchangeOffers).HasForeignKey(o => o.OffererId);
         }
     }
 }

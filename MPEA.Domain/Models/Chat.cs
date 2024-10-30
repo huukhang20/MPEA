@@ -10,16 +10,16 @@ namespace MPEA.Domain.Models
     {
         // Properties
 
-        public string? Id { get; set; }
-        public string? SenderId { get; set; }
-        public string? ReceiverId { get; set; }
+        public Guid Id { get; set; }
+        public Guid SenderId { get; set; }
+        public Guid ReceiverId { get; set; }
         public string? MessageText { get; set; }
         public DateTime? Time { get; set; }
-        public string? Status { get; set; }
+        public bool? IsRead { get; set; }
 
         // Relationships
 
-        public virtual User Sender { get; set; }
-        public virtual User Receiver { get; set; }  
+        public virtual User? Sender { get; set; }
+        public virtual User? Receiver { get; set; }  
     }
 }

@@ -12,5 +12,7 @@ namespace MPEA.Domain.Models
         public string? Description { get; set; }
         public bool? IsDefault { get; set; }
         public DateTime? CreatedDate { get; set; }
+
+        public virtual ICollection<ExchangeAgreement>? Agreement { get; set; }
     }
 }

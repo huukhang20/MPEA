@@ -17,9 +17,12 @@ namespace MPEA.Infrastructure.FluentAPI
 
             builder.HasKey(x => x.Id);
             builder.Property(c => c.Id).HasDefaultValue("gen_random_uuid()");
-            builder.Property(c => c.MessageText).IsRequired().HasMaxLength(1000);
+            builder.Property(c => c.MessageText);
             builder.Property(c => c.Time);
-            builder.Property(c => c.Status);
+            builder.Property(c => c.IsRead);
+
+            builder.HasOne(c => c.Sender).WithMany(s => s.ChatSents).HasForeignKey(c => c.SenderId);
+            builder.HasOne(c => c.Receiver).WithMany(r => r.ChatReceiveds).HasForeignKey(c => c.ReceiverId);
         }
     }
 }

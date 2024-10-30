@@ -15,8 +15,8 @@ namespace MPEA.Domain.Models
         public string? Status { get; set; }
         public DateTime? CreatedDate { get; set; }
 
-        public Exchange Exchange { get; set; }
-        public ExchangeTerm ExchangeTerm { get; set; }
-        public User User { get; set; }
+        public Exchange? Exchange { get; set; }
+        public ExchangeTerm? ExchangeTerm { get; set; }
+        public User? User { get; set; }
     }
 }

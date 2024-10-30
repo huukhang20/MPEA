@@ -24,13 +24,13 @@ namespace MPEA.Infrastructure.FluentAPI
             builder.Property(p => p.Image);
             builder.Property(p => p.IsWarranty);
             builder.Property(p => p.WarrntyImage);
-            builder.Property(p => p.Image);
             builder.Property(p => p.CreatedDate).HasDefaultValueSql("now()");
             builder.Property(p => p.UserId);
             // Relationships
-
-            builder.HasMany(p => p.Wishlist).WithOne(w => w.SparePart).HasForeignKey(w => w.SparePartId);
-            builder.HasMany(p => p.ExchangePart).WithOne(ep => ep.SparePart).HasForeignKey(ep => ep.SparePartId);
+            
+            builder.HasOne(p => p.User).WithMany(u => u.SpareParts).HasForeignKey(p => p.UserId);
+            builder.HasOne(p => p.Category).WithMany(c => c.SpareParts).HasForeignKey(c => c.CategoryId);
+                
         }
     }
 }

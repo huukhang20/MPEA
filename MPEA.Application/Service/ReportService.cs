@@ -21,9 +21,8 @@ public class ReportService : IReportService
     }
      public async Task<bool> AddReport(ReportRequest addReportRequest)
      {
-         var report = _mapper.Map<Report>(addReportRequest);
-         report.Id = Guid.NewGuid().ToString(); 
-         report.CreatedAt = DateTime.UtcNow; 
+         var report = _mapper.Map<Report>(addReportRequest);         
+         report.CreatedDate = DateTime.UtcNow; 
          _unitOfWork.ReportRepository.AddAsync(report);
          var result = await _unitOfWork.SaveChangesAsync();
          return result > 0;

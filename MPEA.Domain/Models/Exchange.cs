@@ -10,20 +10,20 @@ namespace MPEA.Domain.Models
     {
         // Properties
 
-        public string? Id { get; set; }
-        public string? ExchangeTypeId { get; set; }
+        public Guid? Id { get; set; }
+        public Guid? ProviderId { get; set; }   
+        public Guid? OffererId { get; set; }
         public string? Status {  get; set; }
-        public bool AgreementTerm { get; set; }
         public DateTime? CreatedDate { get; set; }
-        public DateTime? UpdatedDate { get; set;}
-        public string? ProviderId { get; set; }
-        public string? OffererId { get; set; }
+        public DateTime? CompletedDate { get; set; }
+        public string? ExchangeType { get; set; }
 
         // Relationships
 
-        public virtual User Provider { get; set; }
-        public virtual User Offerer { get; set; }
-        public virtual ExchangeType ExchangeType { get; set; }
-        public virtual ICollection<ExchangePart> ExchangeParts { get; set; }
+        public virtual User? Provider { get; set; }
+        public virtual User? Offerer { get; set; }
+        public virtual Payment? Payment { get; set; }
+        public ICollection<ExchangeAgreement>? Agreement { get; set; }
+        public ICollection<ExchangeItem>? Items { get; set; }
     }
 }

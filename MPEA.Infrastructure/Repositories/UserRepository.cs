@@ -92,7 +92,7 @@ namespace MPEA.Infrastructure.Repositories
 
         public async Task<User?> GetUserById(int id)
         {
-            return await DbSet.FirstOrDefaultAsync(a => a.Id == id.ToString());
+            return await DbSet.FirstOrDefaultAsync(a => a.Id.ToString() == id.ToString());
 
         }
 

@@ -9,18 +9,14 @@ namespace MPEA.Domain.Models
     public class Wallet
     {
         // Properties
-        public string? Id { get; set; }  
+        public Guid? Id { get; set; }  
         public int? Balance { get; set; }
         public string? Status { get; set; }
         public DateTime? CreatedDate { get; set; }
-        public DateTime? UpdatedDate { get; set; }
-        public string UserId { get; set; }
+        public Guid UserId { get; set; }
 
         // Relationships
 
-        public virtual User User { get; set; }
-        public virtual ICollection<Payment> Payments { get; set; }  
-        public virtual ICollection<BankAccount> BankAccount { get; set; }
-
+        public virtual User? User { get; set; }
     }
 }

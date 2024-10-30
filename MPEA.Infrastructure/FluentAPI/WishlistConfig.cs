@@ -21,6 +21,9 @@ namespace MPEA.Infrastructure.FluentAPI
             builder.Property(x => x.UpdatedAt);
             builder.Property(x => x.DeletedAt);
             builder.Property(x => x.ImageUrl);
+
+            builder.HasOne(x => x.User).WithMany(u => u.Wishlists).HasForeignKey(x => x.UserId);
+            builder.HasOne(x => x.SparePart).WithMany(p => p.Wishlist).HasForeignKey(x => x.SparePartId);
         }
     }
 }

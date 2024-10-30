@@ -10,7 +10,7 @@ namespace MPEA.Domain.Models
     {
         // Properties
 
-        public string? Id {  get; set; }
+        public Guid Id {  get; set; }
         public string? UserId { get; set; }
         public string? Street { get; set; }
         public string? City { get; set; }
@@ -21,6 +21,6 @@ namespace MPEA.Domain.Models
 
         // Relationships
 
-        public virtual User User { get; set; }
+        public virtual User? User { get; set; }
     }
 }

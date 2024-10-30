@@ -16,7 +16,7 @@ namespace MPEA.Domain.Models
         public int? Quantity { get; set; }
 
         // Relationships
-        public virtual SparePart SparePart { get; set; }
-        public virtual Exchange Exchange { get; set; }  
+        public virtual SparePart? SparePart { get; set; }
+        public virtual Exchange? Exchange { get; set; }  
     }
 }

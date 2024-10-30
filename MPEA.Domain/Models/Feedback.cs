@@ -9,15 +9,17 @@ namespace MPEA.Domain.Models
     public class Feedback
     {
         // Properties
-        public string? Id { get; set; } 
-        public string? UserId { get; set; }
-        public string? ExchangeId { get; set; }
-        public string? Rating { get; set; }
+        public Guid Id { get; set; } 
+        public Guid SenderId { get; set; }
+        public Guid ReceiverId { get; set; }
+        public int Rating { get; set; }
         public string? Content { get; set; }
-        public DateTime? CreatedAt { get; set; }
+        public DateTime? CreatedDate{ get; set; }
+        public string? Status { get; set; }
 
         // Realtionships
 
-        public virtual User User { get; set; }
+        public virtual User? Sender { get; set; }
+        public virtual User? Receiver { get; set; }
     }
 }

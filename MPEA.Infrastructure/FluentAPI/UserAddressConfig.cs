@@ -21,8 +21,10 @@ namespace MPEA.Infrastructure.FluentAPI
             builder.Property(a => a.City);
             builder.Property(a => a.Country);
             builder.Property(a => a.PostalCode);
-            builder.Property(a => a.CreatedDate);
+            builder.Property(a => a.CreatedDate).HasDefaultValueSql("now()");
             builder.Property(a => a.DeletedDate);
+
+            builder.HasOne(a => a.User).WithMany(u => u.Addresses).HasForeignKey(a => a.UserId);
         }
     }
 }
