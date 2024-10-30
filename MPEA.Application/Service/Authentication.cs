@@ -56,7 +56,7 @@ namespace MPEA.Application.Service
             var claims = new List<Claim>
         {
             new(ClaimTypes.NameIdentifier, user.Username!),
-            new("Id", user.Id.ToString()),
+            new("Id", user.Code.ToString()),
             new(ClaimTypes.Role, user.Role!),
             new("FullName", user.FullName!)
         };
