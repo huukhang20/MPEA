@@ -43,5 +43,6 @@ namespace MPEA.Domain.Models
         public virtual ICollection<RechargeHistory>? RechargeHistories { get; set; }
         public virtual ICollection<Payment>? Payments { get; set; }
         public virtual ICollection<ExchangeAgreement>? ExchangeAgreements { get; set; }
+        public virtual ICollection<Post>? Posts { get; set; }
     }
 }

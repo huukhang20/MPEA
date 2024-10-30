@@ -18,6 +18,7 @@ namespace MPEA.Infrastructure
         public DbSet<Membership> Memberships { get; set; }
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<Payment> Payments { get; set; }
+        public DbSet<Post> Posts { get; set; }
         public DbSet<Purchase> Purchase { get; set; }
         public DbSet<PurchaseItem> PurchaseItems { get; set; }
         public DbSet<RechargeHistory> RechargeHistories { get; set; }

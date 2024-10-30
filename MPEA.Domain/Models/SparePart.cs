@@ -30,6 +30,7 @@ namespace MPEA.Domain.Models
         public virtual ICollection<Report>? Reports { get; set; }
         public virtual ICollection<ExchangeItem>? ExchangeItems { get; set; }
         public virtual ICollection<PurchaseItem>? PurchaseItems { get; set; }
+        public virtual ICollection<Post>? Posts { get; set; }
 
     }
 }
