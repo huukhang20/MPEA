@@ -10,9 +10,9 @@ namespace MPEA.Domain.Models
     {
         // Properties
 
-        public Guid Id { get; set; }
-        public Guid ProviderId { get; set; }   
-        public Guid OffererId { get; set; }
+        public Guid? Id { get; set; }
+        public Guid? ProviderId { get; set; }   
+        public Guid? OffererId { get; set; }
         public string? Status {  get; set; }
         public DateTime? CreatedDate { get; set; }
         public DateTime? CompletedDate { get; set; }

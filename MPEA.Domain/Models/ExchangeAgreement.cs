@@ -8,10 +8,10 @@ namespace MPEA.Domain.Models
 {
     public class ExchangeAgreement
     {
-        public Guid Id { get; set; }
-        public Guid ExchangeId { get; set; }
-        public Guid TermId { get; set; }
-        public Guid UserId { get; set; }
+        public Guid? Id { get; set; }
+        public Guid? ExchangeId { get; set; }
+        public Guid? TermId { get; set; }
+        public Guid? UserId { get; set; }
         public string? Status { get; set; }
         public DateTime? CreatedDate { get; set; }
 

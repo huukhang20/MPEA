@@ -11,9 +11,9 @@ namespace MPEA.Domain.Models
     {
         // Properties
 
-        public Guid Id { get; set; }
-        public Guid UserId { get; set; }
-        public Guid PartId { get; set; }
+        public Guid? Id { get; set; }
+        public Guid? UserId { get; set; }
+        public Guid? PartId { get; set; }
         public string? Title { get; set; }
         public string? Reason { get; set; }
         public string? Status { get; set; }

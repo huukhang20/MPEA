@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MPEA.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241030090219_UpdateDB301024")]
+    [Migration("20241030095922_UpdateDB301024")]
     partial class UpdateDB301024
     {
         /// <inheritdoc />
@@ -30,7 +30,7 @@ namespace MPEA.Infrastructure.Migrations
 
             modelBuilder.Entity("MPEA.Domain.Models.Category", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
                         .HasDefaultValueSql("gen_random_uuid()");
@@ -41,7 +41,7 @@ namespace MPEA.Infrastructure.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("text");
 
-                    b.Property<Guid>("ParentCateId")
+                    b.Property<Guid?>("ParentCateId")
                         .HasColumnType("uuid");
 
                     b.Property<string>("Status")
@@ -56,7 +56,7 @@ namespace MPEA.Infrastructure.Migrations
 
             modelBuilder.Entity("MPEA.Domain.Models.Chat", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
                         .HasDefaultValueSql("gen_random_uuid()");
@@ -67,10 +67,10 @@ namespace MPEA.Infrastructure.Migrations
                     b.Property<string>("MessageText")
                         .HasColumnType("text");
 
-                    b.Property<Guid>("ReceiverId")
+                    b.Property<Guid?>("ReceiverId")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("SenderId")
+                    b.Property<Guid?>("SenderId")
                         .HasColumnType("uuid");
 
                     b.Property<DateTime?>("Time")
@@ -121,7 +121,7 @@ namespace MPEA.Infrastructure.Migrations
 
             modelBuilder.Entity("MPEA.Domain.Models.ExchangeAgreement", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
                         .HasDefaultValueSql("gen_random_uuid()");
@@ -131,16 +131,16 @@ namespace MPEA.Infrastructure.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasDefaultValueSql("now()");
 
-                    b.Property<Guid>("ExchangeId")
+                    b.Property<Guid?>("ExchangeId")
                         .HasColumnType("uuid");
 
                     b.Property<string>("Status")
                         .HasColumnType("text");
 
-                    b.Property<Guid>("TermId")
+                    b.Property<Guid?>("TermId")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("UserId")
+                    b.Property<Guid?>("UserId")
                         .HasColumnType("uuid");
 
                     b.HasKey("Id");
@@ -204,7 +204,7 @@ namespace MPEA.Infrastructure.Migrations
 
             modelBuilder.Entity("MPEA.Domain.Models.Feedback", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
                         .HasDefaultValueSql("gen_random_uuid()");
@@ -220,10 +220,10 @@ namespace MPEA.Infrastructure.Migrations
                     b.Property<int>("Rating")
                         .HasColumnType("integer");
 
-                    b.Property<Guid>("ReceiverId")
+                    b.Property<Guid?>("ReceiverId")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("SenderId")
+                    b.Property<Guid?>("SenderId")
                         .HasColumnType("uuid");
 
                     b.Property<string>("Status")
@@ -621,7 +621,7 @@ namespace MPEA.Infrastructure.Migrations
 
             modelBuilder.Entity("MPEA.Domain.Models.Wallet", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
                         .HasDefaultValueSql("gen_random_uuid()");
@@ -637,7 +637,7 @@ namespace MPEA.Infrastructure.Migrations
                     b.Property<string>("Status")
                         .HasColumnType("text");
 
-                    b.Property<Guid>("UserId")
+                    b.Property<Guid?>("UserId")
                         .HasColumnType("uuid");
 
                     b.HasKey("Id");
@@ -650,7 +650,7 @@ namespace MPEA.Infrastructure.Migrations
 
             modelBuilder.Entity("MPEA.Domain.Models.Wishlist", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
                         .HasDefaultValueSql("gen_random_uuid()");
@@ -664,13 +664,13 @@ namespace MPEA.Infrastructure.Migrations
                     b.Property<string>("ImageUrl")
                         .HasColumnType("text");
 
-                    b.Property<Guid>("SparePartId")
+                    b.Property<Guid?>("SparePartId")
                         .HasColumnType("uuid");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<Guid>("UserId")
+                    b.Property<Guid?>("UserId")
                         .HasColumnType("uuid");
 
                     b.HasKey("Id");
@@ -686,9 +686,7 @@ namespace MPEA.Infrastructure.Migrations
                 {
                     b.HasOne("MPEA.Domain.Models.Category", "ParentCate")
                         .WithMany("ChildCategories")
-                        .HasForeignKey("ParentCateId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ParentCateId");
 
                     b.Navigation("ParentCate");
                 });
@@ -697,15 +695,11 @@ namespace MPEA.Infrastructure.Migrations
                 {
                     b.HasOne("MPEA.Domain.Models.User", "Receiver")
                         .WithMany("ChatReceiveds")
-                        .HasForeignKey("ReceiverId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ReceiverId");
 
                     b.HasOne("MPEA.Domain.Models.User", "Sender")
                         .WithMany("ChatSents")
-                        .HasForeignKey("SenderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("SenderId");
 
                     b.Navigation("Receiver");
 
@@ -735,21 +729,15 @@ namespace MPEA.Infrastructure.Migrations
                 {
                     b.HasOne("MPEA.Domain.Models.Exchange", "Exchange")
                         .WithMany("Agreement")
-                        .HasForeignKey("ExchangeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ExchangeId");
 
                     b.HasOne("MPEA.Domain.Models.ExchangeTerm", "ExchangeTerm")
                         .WithMany("Agreement")
-                        .HasForeignKey("TermId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("TermId");
 
                     b.HasOne("MPEA.Domain.Models.User", "User")
                         .WithMany("ExchangeAgreements")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("Exchange");
 
@@ -781,15 +769,11 @@ namespace MPEA.Infrastructure.Migrations
                 {
                     b.HasOne("MPEA.Domain.Models.User", "Receiver")
                         .WithMany("FeedbackReceiveds")
-                        .HasForeignKey("ReceiverId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ReceiverId");
 
                     b.HasOne("MPEA.Domain.Models.User", "Sender")
                         .WithMany("FeedbackSents")
-                        .HasForeignKey("SenderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("SenderId");
 
                     b.Navigation("Receiver");
 
@@ -947,9 +931,7 @@ namespace MPEA.Infrastructure.Migrations
                 {
                     b.HasOne("MPEA.Domain.Models.User", "User")
                         .WithOne("Wallet")
-                        .HasForeignKey("MPEA.Domain.Models.Wallet", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("MPEA.Domain.Models.Wallet", "UserId");
 
                     b.Navigation("User");
                 });
@@ -958,15 +940,11 @@ namespace MPEA.Infrastructure.Migrations
                 {
                     b.HasOne("MPEA.Domain.Models.SparePart", "SparePart")
                         .WithMany("Wishlist")
-                        .HasForeignKey("SparePartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("SparePartId");
 
                     b.HasOne("MPEA.Domain.Models.User", "User")
                         .WithMany("Wishlists")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("SparePart");
 

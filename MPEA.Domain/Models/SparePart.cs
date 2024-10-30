@@ -10,14 +10,14 @@ namespace MPEA.Domain.Models
     {
         // Properties
 
-        public Guid Id {  get; set; }
+        public Guid? Id {  get; set; }
         public string? Name { get; set; }
         public double? Price { get; set; }
-        public Guid CategoryId { get; set; }
+        public Guid? CategoryId { get; set; }
         public string? Description { get; set; }
         public bool? IsWarranty { get; set; }
         public string? WarrntyImage { get; set; }
-        public Guid UserId { get; set; }
+        public Guid? UserId { get; set; }
         public string? Status { get; set; }
         public string? Image { get; set; }
         public DateTime? CreatedDate { get; set; }

@@ -9,11 +9,11 @@ namespace MPEA.Domain.Models
     public class Wallet
     {
         // Properties
-        public Guid Id { get; set; }  
+        public Guid? Id { get; set; }  
         public int? Balance { get; set; }
         public string? Status { get; set; }
         public DateTime? CreatedDate { get; set; }
-        public Guid UserId { get; set; }
+        public Guid? UserId { get; set; }
 
         // Relationships
 
