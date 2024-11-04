@@ -8,6 +8,7 @@ namespace MPEA.Application.Model.ViewModel.SparePart
 {
     public class SparePartResponse
     {
+        public Guid? Id { get; set; }
         public string? Name { get; set; }
         public string? CategoryName { get; set; }
         public string? Price { get; set; }
