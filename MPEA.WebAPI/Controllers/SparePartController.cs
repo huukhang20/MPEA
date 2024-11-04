@@ -4,6 +4,7 @@ using MPEA.Application.BaseModel;
 using MPEA.Application.IService;
 using MPEA.Application.Model.RequestModel.SparePart;
 using MPEA.Domain.Models;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace MPEA.WebAPI.Controllers
 {
@@ -99,6 +100,31 @@ namespace MPEA.WebAPI.Controllers
             try
             {
                 var result = await _sparePartService.GetPartByCateName(query);
+                return Ok(new BaseResponseModel
+                {
+                    Status = Ok().StatusCode,
+                    Message = "Success",
+                    Response = result
+                });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new BaseFailedModel
+                {
+                    Status = BadRequest().StatusCode,
+                    Message = ex.Message,
+                    Result = false,
+                    Errors = ex
+                });
+            }
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetPartDetail(Guid id)
+        {
+            try
+            {
+                var result = await _sparePartService.GetPartDetail(id);
                 return Ok(new BaseResponseModel
                 {
                     Status = Ok().StatusCode,

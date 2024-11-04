@@ -60,4 +60,11 @@ public class SparePartService : ISparePartService
         var result = _mapper.Map<List<SparePartResponse>>(list);
         return result;
     }
+
+    public async Task<SparePartDetailResponse> GetPartDetail(Guid query)
+    {
+        var part = await _unitOfWork.SparePartRepository.GetByIdAsync(query);
+        var result = _mapper.Map<SparePartDetailResponse>(part);
+        return result;
+    }
 }
