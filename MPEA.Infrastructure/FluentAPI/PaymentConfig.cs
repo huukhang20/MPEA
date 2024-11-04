@@ -25,7 +25,7 @@ namespace MPEA.Infrastructure.FluentAPI
             builder.HasOne(x => x.Payer).WithMany(p => p.Payments).HasForeignKey(x => x.PayerId);
             builder.HasOne(x => x.Purchase).WithOne(p => p.Payment).HasForeignKey<Payment>(x => x.PurchaseId);
             builder.HasOne(x => x.Exchange).WithOne(e => e.Payment).HasForeignKey<Payment>(x => x.ExchangeId);
-
+            builder.HasOne(x => x.Membership).WithMany(m => m.Payments).HasForeignKey(x => x.MembershipId);
         }
     }
 }

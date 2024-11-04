@@ -16,5 +16,6 @@ namespace MPEA.Domain.Models
         public DateTime CreatedDate { get; set; }
 
         public virtual ICollection<User>? Users { get; set; }
+        public virtual ICollection<Payment>? Payments { get; set; }
     }
 }

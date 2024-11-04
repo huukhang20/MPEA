@@ -12,6 +12,7 @@ namespace MPEA.Domain.Models
         public Guid? PurchaseId { get; set; }
         public Guid? ExchangeId { get; set; }
         public Guid? PayerId { get; set; }
+        public Guid? MembershipId { get; set; }
         public decimal Amount { get; set; }
         public string? PaymentMethod { get; set; }
         public string? Status { get; set; }
@@ -22,6 +23,6 @@ namespace MPEA.Domain.Models
         public virtual User? Payer { get; set; }
         public virtual Purchase? Purchase { get; set; }
         public virtual Exchange? Exchange { get; set; }
-
+        public virtual Membership? Membership { get; set; }
     }
 }
