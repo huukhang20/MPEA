@@ -16,7 +16,9 @@ namespace MPEA.Application.Mapper
             AddSparePartMapperConfig();
             AddNotificationMapperConfig();
             AddReportMapperConfig();
-           AddWishListMapperConfig();
+            AddWishListMapperConfig();
+            AddMembershipMapperConfig();
+            AddPaymentMapperConfig();
         }
 
         partial void AddUserMapperConfig();
@@ -25,5 +27,7 @@ namespace MPEA.Application.Mapper
         partial void AddNotificationMapperConfig();
         partial void AddReportMapperConfig();
         partial void AddWishListMapperConfig();
+        partial void AddMembershipMapperConfig();
+        partial void AddPaymentMapperConfig();
     }
 }

@@ -46,6 +46,14 @@ namespace MPEA.Infrastructure
             services.AddTransient<INotificationRepository, NotificationRepository>();
             services.AddScoped<INotificationService, NotificationService>();
 
+            //
+            services.AddTransient<IMembershipRepository, MembershipRepository>();
+            services.AddScoped<IMembershipService, MembershipService>();
+
+            // 
+            services.AddTransient<IPaymentRepository, PaymentRepository>();
+            services.AddScoped<IPaymentService, PaymentService>();
+
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddSingleton<IMailService, MailService>();
             services.AddAutoMapper(typeof(MapperConfig).Assembly);

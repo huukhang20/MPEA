@@ -1,6 +1,8 @@
-﻿namespace MPEA.Application.IRepository;
+﻿using MPEA.Domain.Models;
 
-public interface IPaymentRepository
+namespace MPEA.Application.IRepository;
+
+public interface IPaymentRepository : IGenericRepository<Payment>
 {
-    
+    Task<List<Payment>> GetMembershipPayment();
 }

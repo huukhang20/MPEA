@@ -15,6 +15,7 @@ namespace MPEA.Application
         public IWishlistRepository WishlistRepository { get; }
         public IReportRepository ReportRepository { get; }
         public INotificationRepository NotificationRepository { get; }
+        public IPaymentRepository PaymentRepository { get; }
         public Task<int> SaveChangesAsync();
     }
 }
