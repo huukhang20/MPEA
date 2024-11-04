@@ -10,4 +10,5 @@ public interface ISparePartService
     Task<List<SparePartResponse>> GetPartByName(string query);
     Task<List<SparePartResponse>> GetPartByCateName(string query);
     Task<SparePartDetailResponse> GetPartDetail(Guid query);
+    Task<UpdateStatusPartResponse> UpdatePartStatus(Guid id, string action);
 }

@@ -143,5 +143,30 @@ namespace MPEA.WebAPI.Controllers
                 });
             }
         }
+
+        [HttpPost("{id}/action")]
+        public async Task<IActionResult> HandleRequestApproval(Guid id, string action)
+        {
+            try
+            {
+                var result = await _sparePartService.UpdatePartStatus(id, action);
+                return Ok(new BaseResponseModel
+                {
+                    Status = Ok().StatusCode,
+                    Message = "Success",
+                    Response = result
+                });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new BaseFailedModel
+                {
+                    Status = BadRequest().StatusCode,
+                    Message = ex.Message,
+                    Result = false,
+                    Errors = ex
+                });
+            }
+        }
     }
 }

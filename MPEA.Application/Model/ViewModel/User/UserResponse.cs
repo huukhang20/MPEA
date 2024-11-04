@@ -13,6 +13,7 @@ namespace MPEA.Application.Model.ViewModel.User
         public string? Password { get; set; }
         public string? Email { get; set; } = string.Empty;
         public string? PhoneNumber { get; set; }
+        public string? Membership { get; set; }
         public string? Role { get; set; }
         public DateTime? Birthday { get; set; }
         public DateTime? CreatedDate { get; set; }

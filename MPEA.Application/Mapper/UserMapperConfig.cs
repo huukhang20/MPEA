@@ -15,7 +15,8 @@ namespace MPEA.Application.Mapper
         partial void AddUserMapperConfig()
         {
             CreateMap<CreateUserRequest, User>();
-            CreateMap<User, UserResponse>().ReverseMap();
+            CreateMap<User, UserResponse>()
+                .ForMember(u => u.Membership, act => act.MapFrom(m => m.Membership.Name));
             CreateMap<UpdateUserRequest, User>();
         }
     }
