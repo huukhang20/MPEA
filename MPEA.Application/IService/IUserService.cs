@@ -13,6 +13,7 @@ namespace MPEA.Application.IService
         Task<List<UserResponse>> GetAllAccount();
         Task<UserResponse> UpdateAccount(int id, UpdateAccountRequest request);
         Task<UserResponse> GetUserById(int id);
-        Task<List<UserResponse>> GetExchangers();
+        Task<List<UserResponse>> GetExchangers(int pageNumber, int pageSize);
+        Task<List<UserResponse>> GetStaffs(int pageNumber, int pageSize);
     }
 }

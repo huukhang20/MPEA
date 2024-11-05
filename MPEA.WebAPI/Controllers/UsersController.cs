@@ -2,6 +2,7 @@
 using MPEA.Application.BaseModel;
 using MPEA.Application.IService;
 using MPEA.Domain.Models;
+using System.Drawing.Printing;
 
 namespace MPEA.WebAPI.Controllers
 {
@@ -27,7 +28,7 @@ namespace MPEA.WebAPI.Controllers
                 return Ok(new BaseResponseModel
                 {
                     Status = Ok().StatusCode,
-                    Message = "Get user successe",
+                    Message = "Get users successed",
                     Response = response
                 });
             }
@@ -44,17 +45,49 @@ namespace MPEA.WebAPI.Controllers
         }
 
         [HttpGet("exchangers")]
-        public async Task<ActionResult> GetExchangers()
+        public async Task<ActionResult> GetExchangers(int pageNumber = 1, int pageSize = 10)
         {
             try
             {
-                var response = await _userSerevice.GetExchangers();
+                var response = await _userSerevice.GetExchangers(pageNumber, pageSize);
 
-                return Ok(new BaseResponseModel
+                return Ok(new PaginatedModel
                 {
                     Status = Ok().StatusCode,
-                    Message = "Get user successe",
-                    Response = response
+                    Message = "Get exchangers successed",
+                    Response = response,
+                    PageNumber = pageNumber,
+                    PageSize = pageSize,
+                    TotalRecords = response.Count()
+                });
+            }
+            catch (Exception ex)
+            {
+                return Ok(new BaseFailedModel
+                {
+                    Status = Ok().StatusCode,
+                    Message = ex.Message,
+                    Result = new List<User>(),
+                    Errors = ex
+                });
+            }
+        }
+
+        [HttpGet("staffs")]
+        public async Task<ActionResult> GetStaffs(int pageNumber = 1, int pageSize = 10)
+        {
+            try
+            {
+                var response = await _userSerevice.GetStaffs(pageNumber, pageSize);
+
+                return Ok(new PaginatedModel
+                {
+                    Status = Ok().StatusCode,
+                    Message = "Get staffs successed",
+                    Response = response,
+                    PageNumber = pageNumber,
+                    PageSize = pageSize,
+                    TotalRecords = response.Count()
                 });
             }
             catch (Exception ex)

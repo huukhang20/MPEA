@@ -46,9 +46,15 @@ namespace MPEA.Application.Service
             return respone;
         }
 
-        public async Task<List<UserResponse>> GetExchangers()
+        public async Task<List<UserResponse>> GetExchangers(int pageNumber, int pageSize)
         {
-            var list = await _unitOfWork.UserRepository.GetExchangers();
+            var list = await _unitOfWork.UserRepository.GetExchangers(pageNumber, pageSize);
+            return _mapper.Map<List<UserResponse>>(list);
+        }
+
+        public async Task<List<UserResponse>> GetStaffs(int pageNumber, int pageSize)
+        {
+            var list = await _unitOfWork.UserRepository.GetStaffs(pageNumber, pageSize);
             return _mapper.Map<List<UserResponse>>(list);
         }
     }

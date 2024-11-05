@@ -100,9 +100,23 @@ namespace MPEA.Infrastructure.Repositories
             a.Username == username && a.Status == UserStatus.Active.ToString());
         }
 
-        public async Task<List<User>> GetExchangers()
+        public async Task<List<User>> GetExchangers(int pageNumber, int pageSize)
         {
-            var list = await DbSet.Where(u => u.Role.Equals(Role.Exchanger.ToString())).ToListAsync();
+            var list = await DbSet
+                                .Where(u => u.Role.Equals(Role.Exchanger.ToString()))
+                                .Skip((pageNumber - 1) * pageSize)
+                                .Take(pageSize)
+                                .ToListAsync();
+            return list;
+        }
+
+        public async Task<List<User>> GetStaffs(int pageNumber, int pageSize)
+        {
+            var list = await DbSet
+                                .Where(u => u.Role.Equals(Role.Staff.ToString()))
+                                .Skip((pageNumber - 1) * pageSize)
+                                .Take(pageSize)
+                                .ToListAsync();
             return list;
         }
     }
