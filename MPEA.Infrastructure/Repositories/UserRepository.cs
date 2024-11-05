@@ -26,10 +26,8 @@ namespace MPEA.Infrastructure.Repositories
 
             if (listUser == null || !listUser.Any()) return 1;
 
-            // Lọc danh sách các tài khoản có code và bắt đầu với roleCode
             var filteredAccounts = listUser.Where(a => a.Code != null && a.Code.StartsWith(roleCode)).ToList();
 
-            // Kiểm tra xem danh sách filteredAccounts có phần tử nào không
             if (!filteredAccounts.Any()) return 1;
 
             var maxNumber = filteredAccounts
@@ -100,6 +98,12 @@ namespace MPEA.Infrastructure.Repositories
         {
             return await DbSet.FirstOrDefaultAsync(a =>
             a.Username == username && a.Status == UserStatus.Active.ToString());
+        }
+
+        public async Task<List<User>> GetExchangers()
+        {
+            var list = await DbSet.Where(u => u.Role.Equals(Role.Exchanger.ToString())).ToListAsync();
+            return list;
         }
     }
 }

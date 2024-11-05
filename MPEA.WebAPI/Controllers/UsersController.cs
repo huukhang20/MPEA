@@ -43,6 +43,32 @@ namespace MPEA.WebAPI.Controllers
             }
         }
 
+        [HttpGet("exchangers")]
+        public async Task<ActionResult> GetExchangers()
+        {
+            try
+            {
+                var response = await _userSerevice.GetExchangers();
+
+                return Ok(new BaseResponseModel
+                {
+                    Status = Ok().StatusCode,
+                    Message = "Get user successe",
+                    Response = response
+                });
+            }
+            catch (Exception ex)
+            {
+                return Ok(new BaseFailedModel
+                {
+                    Status = Ok().StatusCode,
+                    Message = ex.Message,
+                    Result = new List<User>(),
+                    Errors = ex
+                });
+            }
+        }
+
         private bool UserExists(string id)
         {
             throw new NotImplementedException();

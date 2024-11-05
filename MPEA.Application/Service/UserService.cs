@@ -45,5 +45,11 @@ namespace MPEA.Application.Service
             var respone = _mapper.Map<UserResponse>(user);
             return respone;
         }
+
+        public async Task<List<UserResponse>> GetExchangers()
+        {
+            var list = await _unitOfWork.UserRepository.GetExchangers();
+            return _mapper.Map<List<UserResponse>>(list);
+        }
     }
 }

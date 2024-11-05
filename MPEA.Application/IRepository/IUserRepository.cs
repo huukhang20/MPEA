@@ -16,5 +16,6 @@ namespace MPEA.Application.IRepository
         Task<User?> UpdateUser(User? user);
         string? GetAdminAccount(string email, string password);
         Task<User?> GetUserById(int id);
+        Task<List<User>> GetExchangers();
     }
 }
