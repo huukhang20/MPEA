@@ -6,13 +6,10 @@ using System.Threading.Tasks;
 
 namespace MPEA.Application.Model.ViewModel.Chat
 {
-    public class ChatResponse
+    public class ChatSentResponse
     {
-        public Guid ChatId { get; set; }
-        public string? SenderId { get; set; }
-        public string? ReceiverId { get; set; }
+        public Guid? Id { get; set; }
         public string? MessageText { get; set; }
         public DateTime? Time { get; set; }
-        public string? Status { get; set; }
     }
 }

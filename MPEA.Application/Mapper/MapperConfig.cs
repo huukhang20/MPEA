@@ -19,6 +19,7 @@ namespace MPEA.Application.Mapper
             AddWishListMapperConfig();
             AddMembershipMapperConfig();
             AddPaymentMapperConfig();
+            AddChatMapperConfig();
         }
 
         partial void AddUserMapperConfig();
@@ -29,5 +30,6 @@ namespace MPEA.Application.Mapper
         partial void AddWishListMapperConfig();
         partial void AddMembershipMapperConfig();
         partial void AddPaymentMapperConfig();
+        partial void AddChatMapperConfig();
     }
 }

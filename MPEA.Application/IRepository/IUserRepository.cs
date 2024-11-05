@@ -15,8 +15,9 @@ namespace MPEA.Application.IRepository
         Task<User?> Register(User? user);
         Task<User?> UpdateUser(User? user);
         string? GetAdminAccount(string email, string password);
-        Task<User?> GetUserById(int id);
+        Task<User?> GetUserById(Guid id);
         Task<List<User>> GetExchangers(int pageNumber, int pageSize);
         Task<List<User>> GetStaffs(int pageNumber, int pageSize);
+        Task<List<Chat>> GetUserMessageById(Guid id, int pageNumber, int pageSize);
     }
 }

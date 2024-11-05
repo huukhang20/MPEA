@@ -88,9 +88,9 @@ namespace MPEA.Infrastructure.Repositories
             return null;
         }
 
-        public async Task<User?> GetUserById(int id)
+        public async Task<User?> GetUserById(Guid id)
         {
-            return await DbSet.FirstOrDefaultAsync(a => a.Id.ToString() == id.ToString());
+            return await DbSet.FirstOrDefaultAsync(a => a.Id == id);
 
         }
 
@@ -118,6 +118,16 @@ namespace MPEA.Infrastructure.Repositories
                                 .Take(pageSize)
                                 .ToListAsync();
             return list;
+        }
+
+        public async Task<List<Chat>> GetUserMessageById(Guid userId, int pageNumber, int pageSize)
+        {
+            var user = await GetUserById(userId);
+            var result = user.ChatSents
+                                .Skip((pageNumber - 1) * pageSize)
+                                .Take(pageSize)
+                                .ToList();
+            return result;
         }
     }
 }

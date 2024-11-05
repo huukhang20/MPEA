@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MPEA.Application.Model.RequestModel.AccountRequest;
+using MPEA.Application.Model.ViewModel.Chat;
 
 namespace MPEA.Application.Service
 {
@@ -28,7 +29,7 @@ namespace MPEA.Application.Service
             return result;
         }
 
-        public async Task<UserResponse> UpdateAccount(int id, UpdateAccountRequest request)
+        public async Task<UserResponse> UpdateAccount(Guid id, UpdateAccountRequest request)
         {
             var user = await _unitOfWork.UserRepository.GetUserById(id);
             user.PhoneNumber = request.PhoneNumber;
@@ -39,7 +40,7 @@ namespace MPEA.Application.Service
             return respone;
         }
 
-        public async Task<UserResponse> GetUserById(int id)
+        public async Task<UserResponse> GetUserById(Guid id)
         {
             var user = await _unitOfWork.UserRepository.GetUserById(id);
             var respone = _mapper.Map<UserResponse>(user);
@@ -56,6 +57,12 @@ namespace MPEA.Application.Service
         {
             var list = await _unitOfWork.UserRepository.GetStaffs(pageNumber, pageSize);
             return _mapper.Map<List<UserResponse>>(list);
+        }
+
+        public async Task<List<ChatSentResponse>> GetExchangerMessage(Guid userId, int pageNumber, int pageSize)
+        {
+            var list = await _unitOfWork.UserRepository.GetUserMessageById(userId, pageNumber, pageSize);
+            return _mapper.Map<List<ChatSentResponse>>(list);
         }
     }
 }
