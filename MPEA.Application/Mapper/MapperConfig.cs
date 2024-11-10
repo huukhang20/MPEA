@@ -31,5 +31,6 @@ namespace MPEA.Application.Mapper
         partial void AddMembershipMapperConfig();
         partial void AddPaymentMapperConfig();
         partial void AddChatMapperConfig();
+        partial void AddPostMapperConfig();
     }
 }
