@@ -24,11 +24,14 @@ namespace MPEA.WebAPI.Controllers
             try
             {
                 var result = await _postService.GetPosts(pageNumber, pageSize);
-                return Ok(new BaseResponseModel
+                return Ok(new PaginatedModel
                 {
                     Status = Ok().StatusCode,
-                    Message = "Post created successfully.",
-                    Response = result
+                    Message = "Successfully.",
+                    Response = result,
+                    PageNumber = pageNumber,
+                    PageSize = pageSize,
+                    TotalRecords = result.Count()
                 });
             }
             catch (Exception ex)
@@ -69,16 +72,19 @@ namespace MPEA.WebAPI.Controllers
         }
 
         [HttpGet("user/{userId}")]
-        public async Task<IActionResult> GetPostByUserId(Guid userId)
+        public async Task<IActionResult> GetPostByUserId(Guid userId, int pageNumber = 1, int pageSize = 10)
         {
             try
             {
-                var result = await _postService.GetPostByUserId(userId);
-                return Ok(new BaseResponseModel
+                var result = await _postService.GetPostByUserId(userId, pageNumber, pageSize);
+                return Ok(new PaginatedModel
                 {
                     Status = Ok().StatusCode,
                     Message = "Successfully.",
-                    Response = result
+                    Response = result,
+                    PageNumber = pageNumber,
+                    PageSize = pageSize,
+                    TotalRecords = result.Count()
                 });
             }
             catch (Exception ex)
@@ -99,10 +105,55 @@ namespace MPEA.WebAPI.Controllers
             try
             {
                 var result = await _postService.CreatePost(request);
+                if (result is true)
+                {
+                    return Ok(new BaseResponseModel
+                    {
+                        Status = Ok().StatusCode,
+                        Message = "Post created successfully.",
+                        Response = result
+                    });
+                }
                 return Ok(new BaseResponseModel
                 {
                     Status = Ok().StatusCode,
-                    Message = "Post created successfully.",
+                    Message = "Post created fail.",
+                    Response = result
+                });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new BaseFailedModel
+                {
+                    Status = BadRequest().StatusCode,
+                    Message = ex.Message,
+                    Result = false,
+                    Errors = ex
+                });
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeletePost(Guid id)
+        {
+            try
+            {
+                var result = await _postService.DeletePost(id);
+               
+                if (result is true)
+                {
+                    return Ok(new BaseResponseModel
+                    {
+                        Status = Ok().StatusCode,
+                        Message = "Successfully.",
+                        Response = result
+                    });
+                }
+
+                return Ok(new BaseResponseModel
+                {
+                    Status = Ok().StatusCode,
+                    Message = "Failed.",
                     Response = result
                 });
             }
@@ -119,5 +170,40 @@ namespace MPEA.WebAPI.Controllers
         }
 
 
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdatePost(Guid id, [FromBody] UpdatePostRequest request)
+        {
+            try
+            {
+                var result = await _postService.UpdatePost(id, request);
+
+                if (result is true)
+                {
+                    return Ok(new BaseResponseModel
+                    {
+                        Status = Ok().StatusCode,
+                        Message = "Successfully.",
+                        Response = result
+                    });
+                }
+
+                return Ok(new BaseResponseModel
+                {
+                    Status = Ok().StatusCode,
+                    Message = "Failed.",
+                    Response = result
+                });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new BaseFailedModel
+                {
+                    Status = BadRequest().StatusCode,
+                    Message = ex.Message,
+                    Result = false,
+                    Errors = ex
+                });
+            }
+        }
     }
 }

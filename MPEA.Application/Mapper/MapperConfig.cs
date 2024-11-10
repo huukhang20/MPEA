@@ -20,6 +20,7 @@ namespace MPEA.Application.Mapper
             AddMembershipMapperConfig();
             AddPaymentMapperConfig();
             AddChatMapperConfig();
+            AddPostMapperConfig();
         }
 
         partial void AddUserMapperConfig();

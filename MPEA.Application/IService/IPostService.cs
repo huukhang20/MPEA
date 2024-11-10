@@ -13,6 +13,8 @@ namespace MPEA.Application.IService
         Task<bool> CreatePost(CreatePostRequest request);
         Task<List<PostResponse>> GetPosts(int pageNumber, int pageSize);
         Task<PostResponse> GetPostById(Guid postId);
-        Task<PostResponse> GetPostByUserId(Guid userId);
+        Task<List<PostResponse>> GetPostByUserId(Guid userId, int pageNumber, int pageSize);
+        Task<bool> DeletePost(Guid postId);
+        Task<bool> UpdatePost(Guid postId, UpdatePostRequest post);
     }
 }

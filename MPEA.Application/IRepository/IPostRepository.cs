@@ -10,6 +10,6 @@ namespace MPEA.Application.IRepository
     public interface IPostRepository : IGenericRepository<Post>
     {
         Task<List<Post>> GetPosts(int pageNumber, int pageSize);
-        Task<Post> GetPostByUserId(Guid userId);
+        Task<List<Post>> GetPostByUserId(Guid userId, int pageNumber, int pageSize);
     }
 }
