@@ -16,6 +16,11 @@ namespace MPEA.Infrastructure.Repositories
         {
         }
 
+        public async Task<Post> GetPostByUserId(Guid userId)
+        {
+            return await DbSet.FirstOrDefaultAsync(p => p.UserId.Equals(userId));
+        }
+
         public async Task<List<Post>> GetPosts(int pageNumber, int pageSize)
         {
             var list = await DbSet

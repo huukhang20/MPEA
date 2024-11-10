@@ -68,6 +68,31 @@ namespace MPEA.WebAPI.Controllers
             }
         }
 
+        [HttpGet("user/{userId}")]
+        public async Task<IActionResult> GetPostByUserId(Guid userId)
+        {
+            try
+            {
+                var result = await _postService.GetPostByUserId(userId);
+                return Ok(new BaseResponseModel
+                {
+                    Status = Ok().StatusCode,
+                    Message = "Successfully.",
+                    Response = result
+                });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new BaseFailedModel
+                {
+                    Status = BadRequest().StatusCode,
+                    Message = ex.Message,
+                    Result = false,
+                    Errors = ex
+                });
+            }
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreatePost(CreatePostRequest request)
         {

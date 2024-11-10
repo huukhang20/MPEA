@@ -43,6 +43,13 @@ namespace MPEA.Application.Service
             return result;
         }
 
+        public async Task<PostResponse> GetPostByUserId(Guid userId)
+        {
+            var post = await _unitOfWork.PostRepository.GetPostByUserId(userId);
+            var result = mapper.Map<PostResponse>(post);
+            return result;
+        }
+
         public async Task<List<PostResponse>> GetPosts(int pageNumber, int pageSize)
         {
             var list = await _unitOfWork.PostRepository.GetPosts(pageNumber, pageSize);
