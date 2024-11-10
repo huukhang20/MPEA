@@ -58,6 +58,11 @@ namespace MPEA.Infrastructure
             services.AddTransient<IPostRepository, PostRepository>();
             services.AddScoped<IPostService, PostService>();
 
+            //
+            services.AddTransient<IExchangeRepository, ExchangeRepository>();
+            services.AddScoped<IExchangeService, ExchangeService>();
+
+
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddSingleton<IMailService, MailService>();
             services.AddAutoMapper(typeof(MapperConfig).Assembly);

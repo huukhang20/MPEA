@@ -1,6 +1,8 @@
-﻿namespace MPEA.Application.IRepository;
+﻿using MPEA.Domain.Models;
 
-public interface IExchangeRepository
+namespace MPEA.Application.IRepository;
+
+public interface IExchangeRepository : IGenericRepository<Exchange>
 {
-    
+    Task<List<Exchange>> GetByUserId(Guid userId, int pageNumber, int pageSize);
 }

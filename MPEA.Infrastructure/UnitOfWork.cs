@@ -12,7 +12,7 @@ namespace MPEA.Infrastructure
     {
         private readonly AppDbContext _context;
 
-        public UnitOfWork(AppDbContext context, IUserRepository userRepository, ICategoryRepository categoryRepository, ISparePartRepository sparePartRepository, IWishlistRepository wishlistRepository, IReportRepository reportRepository, INotificationRepository notificationRepository, IPaymentRepository paymentRepository, IPostRepository postRepository)
+        public UnitOfWork(AppDbContext context, IUserRepository userRepository, ICategoryRepository categoryRepository, ISparePartRepository sparePartRepository, IWishlistRepository wishlistRepository, IReportRepository reportRepository, INotificationRepository notificationRepository, IPaymentRepository paymentRepository, IPostRepository postRepository, IExchangeRepository exchangeRepository)
         {
             _context = context;
             UserRepository = userRepository;
@@ -23,6 +23,7 @@ namespace MPEA.Infrastructure
             NotificationRepository = notificationRepository;
             PaymentRepository = paymentRepository;
             PostRepository = postRepository;
+            ExchangeRepository = exchangeRepository;
         }
 
         public IUserRepository UserRepository { get; }
@@ -34,6 +35,7 @@ namespace MPEA.Infrastructure
         public IPaymentRepository PaymentRepository {  get; }
 
         public IPostRepository PostRepository { get; }
+        public IExchangeRepository ExchangeRepository { get; }
 
         public async Task<int> SaveChangesAsync()
         {
