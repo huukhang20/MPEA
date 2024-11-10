@@ -18,6 +18,7 @@ namespace MPEA.Application
         public IPaymentRepository PaymentRepository { get; }
         public IPostRepository PostRepository { get; }
         public IExchangeRepository ExchangeRepository { get; }
+        public IExchangeItemRepository ExchangeItemRepository { get; }
         public Task<int> SaveChangesAsync();
     }
 }
