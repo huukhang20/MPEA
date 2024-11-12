@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MPEA.Application.Model.RequestModel.AccountRequest;
 using MPEA.Application.Model.ViewModel.Chat;
+using MPEA.Application.Model.ViewModel.UserAdresses;
 
 namespace MPEA.Application.Service
 {
@@ -63,6 +64,12 @@ namespace MPEA.Application.Service
         {
             var list = await _unitOfWork.UserRepository.GetUserMessageById(userId, pageNumber, pageSize);
             return _mapper.Map<List<ChatSentResponse>>(list);
+        }
+
+        public async Task<List<UserAddressResponse>> GetUserAddress(Guid userId, int pageNumber, int pageSize)
+        {
+            var list = await _unitOfWork.UserRepository.GetUserAddressesById(userId, pageNumber, pageSize);
+            return _mapper.Map<List<UserAddressResponse>>(list);
         }
     }
 }

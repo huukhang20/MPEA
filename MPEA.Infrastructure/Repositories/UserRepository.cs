@@ -129,5 +129,15 @@ namespace MPEA.Infrastructure.Repositories
                                 .ToList();
             return result;
         }
+
+        public async Task<List<UserAddress>> GetUserAddressesById(Guid id, int pageNumber, int pageSize)
+        {
+            var user = await GetUserById(id);
+            var result = user.Addresses
+                                .Skip((pageNumber - 1) * pageSize)
+                                .Take(pageSize)
+                                .ToList();
+            return result;
+        }
     }
 }

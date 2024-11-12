@@ -131,6 +131,35 @@ namespace MPEA.WebAPI.Controllers
             }
         }
 
+        [HttpGet("{id}/addresses")]
+        public async Task<ActionResult> GetUserAddress(Guid id, int pageNumber = 1, int pageSize = 10)
+        {
+            try
+            {
+                var response = await _userSerevice.GetUserAddress(id, pageNumber, pageSize);
+
+                return Ok(new PaginatedModel
+                {
+                    Status = Ok().StatusCode,
+                    Message = "Get exchangers successed",
+                    Response = response,
+                    PageNumber = pageNumber,
+                    PageSize = pageSize,
+                    TotalRecords = response.Count()
+                });
+            }
+            catch (Exception ex)
+            {
+                return Ok(new BaseFailedModel
+                {
+                    Status = Ok().StatusCode,
+                    Message = ex.Message,
+                    Result = new List<User>(),
+                    Errors = ex
+                });
+            }
+        }
+
         private bool UserExists(string id)
         {
             throw new NotImplementedException();

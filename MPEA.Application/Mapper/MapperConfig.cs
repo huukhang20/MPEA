@@ -23,6 +23,7 @@ namespace MPEA.Application.Mapper
             AddPostMapperConfig();
             AddExchangeMapperConfig();
             AddExItemMapperConfig();
+            AddUserAddressMapperConfig();
         }
 
         partial void AddUserMapperConfig();
@@ -37,5 +38,6 @@ namespace MPEA.Application.Mapper
         partial void AddPostMapperConfig();
         partial void AddExchangeMapperConfig();
         partial void AddExItemMapperConfig();
+        partial void AddUserAddressMapperConfig();
     }
 }
