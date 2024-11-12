@@ -139,5 +139,18 @@ namespace MPEA.Infrastructure.Repositories
                                 .ToList();
             return result;
         }
+
+        public async Task<List<Payment>> GetUserTransactionsById(Guid userId, int pageNumber, int pageSize)
+        {
+            var result = await _context.Payments
+                                    .Where(p => p.PayerId == userId
+                                            || (p.PurchaseId != null && _context.Purchase.Any(pur => pur.Id == p.PurchaseId
+                                                                                                     && (pur.BuyerId == userId || pur.SellerId == userId)))
+                                            || (p.ExchangeId != null && _context.Exchanges.Any(ex => ex.Id == p.ExchangeId
+                                                                                                    && (ex.ProviderId == userId || ex.OffererId == userId))))
+                                    .OrderByDescending(p => p.CreatedDate)
+                                    .ToListAsync();
+            return result;
+        }
     }
 }

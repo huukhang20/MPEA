@@ -20,5 +20,6 @@ namespace MPEA.Application.IRepository
         Task<List<User>> GetStaffs(int pageNumber, int pageSize);
         Task<List<Chat>> GetUserMessageById(Guid id, int pageNumber, int pageSize);
         Task<List<UserAddress>> GetUserAddressesById(Guid id, int pageNumber, int pageSize);
+        Task<List<Payment>> GetUserTransactionsById(Guid id, int pageNumber, int pageSize);
     }
 }

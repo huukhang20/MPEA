@@ -21,6 +21,7 @@ namespace MPEA.Infrastructure.FluentAPI
             builder.Property(x => x.PaymentMethod);
             builder.Property(x => x.Status);
             builder.Property(x => x.CreatedDate).HasDefaultValueSql("now()");
+            builder.Property(x => x.Code);
 
             builder.HasOne(x => x.Payer).WithMany(p => p.Payments).HasForeignKey(x => x.PayerId);
             builder.HasOne(x => x.Purchase).WithOne(p => p.Payment).HasForeignKey<Payment>(x => x.PurchaseId);

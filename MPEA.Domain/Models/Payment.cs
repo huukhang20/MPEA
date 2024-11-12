@@ -13,6 +13,7 @@ namespace MPEA.Domain.Models
         public Guid? ExchangeId { get; set; }
         public Guid? PayerId { get; set; }
         public Guid? MembershipId { get; set; }
+        public string? Code { get; set; }
         public decimal Amount { get; set; }
         public string? PaymentMethod { get; set; }
         public string? Status { get; set; }

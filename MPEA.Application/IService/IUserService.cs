@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using MPEA.Application.Model.RequestModel.AccountRequest;
 using MPEA.Application.Model.ViewModel.Chat;
 using MPEA.Application.Model.ViewModel.UserAdresses;
+using MPEA.Application.Model.ViewModel.Payment;
 
 namespace MPEA.Application.IService
 {
@@ -19,5 +20,6 @@ namespace MPEA.Application.IService
         Task<List<UserResponse>> GetStaffs(int pageNumber, int pageSize);
         Task<List<ChatSentResponse>> GetExchangerMessage(Guid userId, int pageNumber, int pageSize);
         Task<List<UserAddressResponse>> GetUserAddress(Guid userId, int pageNumber, int pageSize);
+        Task<List<PaymentHistoryResponse>> GetUserTransasction(Guid userId, int pageNumber, int pageSize);
     }
 }

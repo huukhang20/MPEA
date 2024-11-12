@@ -141,7 +141,36 @@ namespace MPEA.WebAPI.Controllers
                 return Ok(new PaginatedModel
                 {
                     Status = Ok().StatusCode,
-                    Message = "Get exchangers successed",
+                    Message = "Successfully",
+                    Response = response,
+                    PageNumber = pageNumber,
+                    PageSize = pageSize,
+                    TotalRecords = response.Count()
+                });
+            }
+            catch (Exception ex)
+            {
+                return Ok(new BaseFailedModel
+                {
+                    Status = Ok().StatusCode,
+                    Message = ex.Message,
+                    Result = new List<User>(),
+                    Errors = ex
+                });
+            }
+        }
+
+        [HttpGet("{id}/transactions")]
+        public async Task<ActionResult> GetUserTransactions(Guid id, int pageNumber = 1, int pageSize = 10)
+        {
+            try
+            {
+                var response = await _userSerevice.GetUserTransasction(id, pageNumber, pageSize);
+
+                return Ok(new PaginatedModel
+                {
+                    Status = Ok().StatusCode,
+                    Message = "Successfully",
                     Response = response,
                     PageNumber = pageNumber,
                     PageSize = pageSize,

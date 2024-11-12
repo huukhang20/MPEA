@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using MPEA.Application.Model.RequestModel.AccountRequest;
 using MPEA.Application.Model.ViewModel.Chat;
 using MPEA.Application.Model.ViewModel.UserAdresses;
+using MPEA.Application.Model.ViewModel.Payment;
 
 namespace MPEA.Application.Service
 {
@@ -70,6 +71,12 @@ namespace MPEA.Application.Service
         {
             var list = await _unitOfWork.UserRepository.GetUserAddressesById(userId, pageNumber, pageSize);
             return _mapper.Map<List<UserAddressResponse>>(list);
+        }
+
+        public async Task<List<PaymentHistoryResponse>> GetUserTransasction(Guid userId, int pageNumber, int pageSize)
+        {
+            var list = await _unitOfWork.UserRepository.GetUserTransactionsById(userId, pageNumber, pageSize);
+            return _mapper.Map<List<PaymentHistoryResponse>>(list);
         }
     }
 }

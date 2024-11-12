@@ -18,6 +18,7 @@ namespace MPEA.Application.Mapper
             CreateMap<Payment, MembershipPaymentResponse>()
                 .ForMember(p => p.Membership, act => act.MapFrom(pm => pm.Membership.Name))
                 .ForMember(p => p.UserCode, act => act.MapFrom(pm => pm.Payer.Code));
+            CreateMap<Payment, PaymentHistoryResponse>();
         }
     }
 }
