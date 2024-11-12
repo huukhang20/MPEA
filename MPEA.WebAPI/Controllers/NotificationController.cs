@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using MPEA.Application.BaseModel;
 using MPEA.Application.IService;
 using MPEA.Application.Model.ViewModel.Notification;
+using MPEA.Application.Service;
 
 namespace MPEA.WebAPI.Controllers;
 [ApiController]
@@ -15,6 +16,35 @@ public class NotificationController : Controller
     {
         _notificationService = notificationService;
     }
+
+    [HttpGet]
+    public async Task<IActionResult> GetNotification(int pageNumber = 1, int pageSize = 10)
+    {
+        try
+        {
+            var result = await _notificationService.GetNotifications(pageNumber, pageSize);
+            return Ok(new PaginatedModel
+            {
+                Status = Ok().StatusCode,
+                Message = "Successfully.",
+                Response = result,
+                PageNumber = pageNumber,
+                PageSize = pageSize,
+                TotalRecords = result.Count()
+            });
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new BaseFailedModel
+            {
+                Status = BadRequest().StatusCode,
+                Message = ex.Message,
+                Result = false,
+                Errors = ex
+            });
+        }
+    }
+
     [HttpGet("get5notification/{id}")]
     public async Task<IActionResult> Get5Notification([FromRoute] int id)
     {

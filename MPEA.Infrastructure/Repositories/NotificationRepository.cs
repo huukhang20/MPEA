@@ -24,4 +24,12 @@ public class NotificationRepository : GenericRepository<Notification>, INotifica
     {
         return await DbSet.Where(n => n.UserId.ToString() == id.ToString()).ToListAsync();
     }
+
+    public async Task<List<Notification>> GetNotifications(int pageNumber, int pageSize)
+    {
+        return await DbSet
+                        .Skip((pageNumber - 1) * pageSize)
+                        .Take(pageSize)
+                        .ToListAsync();
+    }
 }

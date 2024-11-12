@@ -3,6 +3,7 @@ using MPEA.Application.BaseModel;
 using MPEA.Application.IService;
 using MPEA.Application.Model.RequestModel.NotificationRequest;
 using MPEA.Application.Model.ViewModel.Notification;
+using MPEA.Application.Model.ViewModel.PostResponse;
 using MPEA.Domain.Enum;
 using MPEA.Domain.Models;
 
@@ -64,5 +65,12 @@ public class NotificationService : INotificationService
         notification.IsRead = true;
 
         return await _unitOfWork.SaveChangesAsync() > 0;
+    }
+
+    public async Task<List<NotificationResponse>> GetNotifications(int pageNumber, int pageSize)
+    {
+        var list = await _unitOfWork.NotificationRepository.GetNotifications(pageNumber, pageSize);
+        var result = _mapper.Map<List<NotificationResponse>>(list);
+        return result;
     }
 }

@@ -12,4 +12,5 @@ public interface INotificationService
     public Task<NotificationDetailResponse?> GetNotificationById(int id);
     public Task<(List<NotificationResponse>?, int)> GetNotificationByAccountId(ListModels listModelsint , int id);
     public Task<bool> ReadNotification(int id);
+    public Task<List<NotificationResponse>> GetNotifications(int pageNumber, int pageSize);
 }

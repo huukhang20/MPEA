@@ -10,7 +10,7 @@ public partial class MapperConfig : Profile
     partial void AddNotificationMapperConfig()
     {
         CreateMap<NotificationRequest, Notification>();
-        CreateMap<Notification, Notification>().ReverseMap();
+        CreateMap<Notification, NotificationResponse>().ReverseMap();
         CreateMap<Notification, NotificationDetailResponse>().ReverseMap();
     }
 }

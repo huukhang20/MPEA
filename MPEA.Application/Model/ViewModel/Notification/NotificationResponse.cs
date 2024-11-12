@@ -8,8 +8,9 @@ namespace MPEA.Application.Model.ViewModel.Notification
 {
     public class NotificationResponse
     {
+        public Guid? Id { get; set; }
         public string? Title { get; set; }
-        public string? Id { get; set; }
-
+        public string? Description { get; set; }
+        public string? Status { get; set; }
     }
 }
