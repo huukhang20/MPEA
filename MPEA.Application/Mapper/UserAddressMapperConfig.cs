@@ -16,6 +16,7 @@ namespace MPEA.Application.Mapper
         {
             CreateMap<UserAddress, UserAddressResponse>();
             CreateMap<CreateAddressRequest, UserAddress>();
+            CreateMap<UpdateAddressRequest, UserAddress>();
         }
     }
 }

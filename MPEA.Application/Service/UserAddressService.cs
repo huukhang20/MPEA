@@ -29,4 +29,33 @@ public class UserAddressService : IUserAddressService
 
         return true;
     }
+
+    public async Task<bool?> DeleteAddress(Guid id)
+    {
+        var post = await _unitOfWork.UserAddressRepository.GetByIdAsync(id);
+        await _unitOfWork.UserAddressRepository.DeleteAsync(post);
+        var check = await _unitOfWork.SaveChangesAsync() > 0;
+
+        if (check is false)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    public async Task<bool> UpdateAddress(Guid id, UpdateAddressRequest request)
+    {
+        var address = await _unitOfWork.UserAddressRepository.GetByIdAsync(id);
+        address = _mapper.Map(request, address);
+        _unitOfWork.UserAddressRepository.Update(address);
+        var check = await _unitOfWork.SaveChangesAsync() > 0;
+
+        if (check is false)
+        {
+            return false;
+        }
+
+        return true;
+    }
 }
