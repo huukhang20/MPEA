@@ -66,6 +66,10 @@ namespace MPEA.Infrastructure
             services.AddTransient<IExchangeItemRepository, ExchangeItemRepository>();
             services.AddScoped<IExchangeItemService, ExchangItemService>();
 
+            //
+            services.AddTransient<IUserAddressRepository, UserAddressRepository>();
+            services.AddScoped<IUserAddressService, UserAddressService>();
+
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddSingleton<IMailService, MailService>();

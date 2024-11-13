@@ -1,6 +1,8 @@
-﻿namespace MPEA.Application.IRepository;
+﻿using MPEA.Domain.Models;
 
-public interface IUserAddressRepository
+namespace MPEA.Application.IRepository;
+
+public interface IUserAddressRepository : IGenericRepository<UserAddress>
 {
     
 }

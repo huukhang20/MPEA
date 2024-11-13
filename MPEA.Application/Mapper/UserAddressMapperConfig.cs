@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using MPEA.Application.Model.RequestModel.UserAddressRequest;
 using MPEA.Application.Model.ViewModel.UserAdresses;
 using MPEA.Domain.Models;
 using System;
@@ -14,6 +15,7 @@ namespace MPEA.Application.Mapper
         partial void AddUserAddressMapperConfig()
         {
             CreateMap<UserAddress, UserAddressResponse>();
+            CreateMap<CreateAddressRequest, UserAddress>();
         }
     }
 }

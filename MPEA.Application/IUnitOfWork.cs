@@ -19,6 +19,7 @@ namespace MPEA.Application
         public IPostRepository PostRepository { get; }
         public IExchangeRepository ExchangeRepository { get; }
         public IExchangeItemRepository ExchangeItemRepository { get; }
+        public IUserAddressRepository UserAddressRepository { get; }
         public Task<int> SaveChangesAsync();
     }
 }
